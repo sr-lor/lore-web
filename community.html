@@ -229,23 +229,6 @@
     const slugOrId = LoreApp.getPathId();
     let activeRoomId = slugOrId;
 
-    // Keep the browser address bar clean and permanent (/c/xxxx)
-    if (slugOrId && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/c/' + encodeURIComponent(slugOrId));
-    }
-
-    function joinInApp() {
-      LoreApp.launchApp(`c/${activeRoomId}`);
-    }
-
-    function shareGroup() {
-      const name = document.getElementById('group-name').textContent;
-      LoreApp.shareContent(`انضم إلى ${name}`, `أدعوك للانضمام إلى مجموعة ${name} على لور`);
-    }
-
-    // Auto Launch on mobile if direct visit
-    LoreApp.autoLaunchIfMobile(`c/${slugOrId}`);
-
     // Instant initial render from URL parameters
     const queryTitle = urlParams.get('t') || urlParams.get('title') || urlParams.get('name');
     const queryImg = urlParams.get('img') || urlParams.get('image') || urlParams.get('avatar');
@@ -281,6 +264,23 @@
     if (queryDesc && queryDesc.trim().length > 0) {
       document.getElementById('group-desc').textContent = decodeURIComponent(queryDesc);
     }
+
+    // Keep the browser address bar clean and permanent (/c/xxxx) after rendering
+    if (slugOrId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/c/' + encodeURIComponent(slugOrId));
+    }
+
+    function joinInApp() {
+      LoreApp.launchApp(`c/${activeRoomId}`);
+    }
+
+    function shareGroup() {
+      const name = document.getElementById('group-name').textContent;
+      LoreApp.shareContent(`انضم إلى ${name}`, `أدعوك للانضمام إلى مجموعة ${name} على لور`);
+    }
+
+    // Auto Launch on mobile if direct visit
+    LoreApp.autoLaunchIfMobile(`c/${slugOrId}`);
 
     // Dynamic AppSync Query for Real Group Details
     async function fetchRealRoomDetails() {

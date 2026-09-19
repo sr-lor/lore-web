@@ -127,8 +127,60 @@
 
   <script src="/assets/js/app.js"></script>
   <script>
+    // 1. Instant 100% Real Data Rendering from URL Parameters (MUST run before replaceState)
+    const urlParams = new URLSearchParams(window.location.search);
     const novelId = LoreApp.getPathId();
     const deepLinkPath = `novel/${novelId}`;
+
+    const queryTitle = urlParams.get('t') || urlParams.get('title');
+    const queryCover = urlParams.get('img') || urlParams.get('cover');
+    const queryDesc = urlParams.get('d') || urlParams.get('desc');
+    const queryChapters = urlParams.get('ch') || urlParams.get('chapters');
+    const queryAuthor = urlParams.get('by') || urlParams.get('author');
+    const queryStatus = urlParams.get('st') || urlParams.get('status');
+
+    if (queryTitle && queryTitle.trim().length > 0) {
+      const title = decodeURIComponent(queryTitle).trim();
+      document.getElementById('novel-title').textContent = title;
+      document.getElementById('page-title').textContent = `${title} | رواية على لور`;
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', title);
+    }
+
+    if (queryCover && queryCover.startsWith('http')) {
+      const cleanCover = decodeURIComponent(queryCover);
+      LoreApp.loadS3Image(cleanCover, document.getElementById('novel-cover'));
+      const ogImg = document.getElementById('og-image');
+      if (ogImg) ogImg.setAttribute('content', cleanCover);
+    }
+
+    if (queryDesc && queryDesc.trim().length > 0) {
+      const d = decodeURIComponent(queryDesc);
+      document.getElementById('novel-desc').textContent = d;
+      const ogDesc = document.getElementById('og-desc');
+      if (ogDesc) ogDesc.setAttribute('content', d);
+    }
+
+    if (queryChapters && queryChapters.trim().length > 0) {
+      document.getElementById('novel-chapters').textContent = queryChapters;
+    }
+
+    if (queryStatus && queryStatus.trim().length > 0) {
+      const st = queryStatus.trim().toLowerCase();
+      document.getElementById('novel-status').textContent = (st === 'completed' || st === 'مكتملة') ? 'مكتملة' : 'مستمرة';
+    }
+
+    if (queryAuthor && queryAuthor.trim().length > 0) {
+      const tagsContainer = document.getElementById('novel-tags');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = `<span class="tag-pill">بقلم: ${decodeURIComponent(queryAuthor)}</span>`;
+      }
+    }
+
+    // 2. Clean the browser address bar permanently to /n/novelId (after parameters are read)
+    if (novelId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/n/' + encodeURIComponent(novelId));
+    }
 
     function openInApp() {
       LoreApp.launchApp(deepLinkPath);
@@ -139,45 +191,8 @@
       LoreApp.shareContent(title, `اقرأ رواية ${title} على تطبيق لور`);
     }
 
-    if (novelId && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/n/' + encodeURIComponent(novelId));
-    }
-
     // Direct app launching on mobile visit if app installed
     LoreApp.autoLaunchIfMobile(deepLinkPath);
-
-    // Instant 100% Real Data Rendering from URL Parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const queryTitle = urlParams.get('t') || urlParams.get('title');
-    const queryCover = urlParams.get('img') || urlParams.get('cover');
-    const queryDesc = urlParams.get('d') || urlParams.get('desc');
-    const queryChapters = urlParams.get('ch') || urlParams.get('chapters');
-    const queryAuthor = urlParams.get('by') || urlParams.get('author');
-
-    if (queryTitle && queryTitle.trim().length > 0) {
-      const title = decodeURIComponent(queryTitle).trim();
-      document.getElementById('novel-title').textContent = title;
-      document.getElementById('page-title').textContent = `${title} | رواية على لور`;
-    }
-
-    if (queryCover && queryCover.startsWith('http')) {
-      LoreApp.loadS3Image(decodeURIComponent(queryCover), document.getElementById('novel-cover'));
-    }
-
-    if (queryDesc && queryDesc.trim().length > 0) {
-      document.getElementById('novel-desc').textContent = decodeURIComponent(queryDesc);
-    }
-
-    if (queryChapters && queryChapters.trim().length > 0) {
-      document.getElementById('novel-chapters').textContent = queryChapters;
-    }
-
-    if (queryAuthor && queryAuthor.trim().length > 0) {
-      const tagsContainer = document.getElementById('novel-tags');
-      if (tagsContainer) {
-        tagsContainer.innerHTML = `<span class="tag-pill">بقلم: ${decodeURIComponent(queryAuthor)}</span>`;
-      }
-    }
 
     // Fetch Novel Data Dynamically from AppSync (if available)
     async function loadNovelData() {

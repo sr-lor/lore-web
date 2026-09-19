@@ -120,8 +120,58 @@
 
   <script src="/assets/js/app.js"></script>
   <script>
+    // 1. Instant 100% Real Data Rendering from URL Parameters (MUST run before replaceState)
+    const urlParams = new URLSearchParams(window.location.search);
     const articleId = LoreApp.getPathId();
     const deepLinkPath = `article/${articleId}`;
+
+    const queryTitle = urlParams.get('t') || urlParams.get('title');
+    const queryCover = urlParams.get('img') || urlParams.get('cover');
+    const queryDesc = urlParams.get('d') || urlParams.get('desc');
+    const queryAuthor = urlParams.get('by') || urlParams.get('author');
+    const queryViews = urlParams.get('v') || urlParams.get('views');
+    const queryLikes = urlParams.get('l') || urlParams.get('likes');
+
+    if (queryTitle && queryTitle.trim().length > 0) {
+      const title = decodeURIComponent(queryTitle).trim();
+      document.getElementById('article-title').textContent = title;
+      document.getElementById('page-title').textContent = `${title} | مقال على لور`;
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', title);
+    }
+
+    if (queryViews !== null && queryViews !== undefined && queryViews.trim().length > 0) {
+      const v = parseInt(queryViews, 10);
+      document.getElementById('article-views').textContent = LoreApp.formatCount(isNaN(v) ? queryViews : v);
+    }
+
+    if (queryLikes !== null && queryLikes !== undefined && queryLikes.trim().length > 0) {
+      const l = parseInt(queryLikes, 10);
+      document.getElementById('article-likes').textContent = LoreApp.formatCount(isNaN(l) ? queryLikes : l);
+    }
+
+    if (queryCover && queryCover.startsWith('http')) {
+      const cleanImg = decodeURIComponent(queryCover);
+      LoreApp.loadS3Image(cleanImg, document.getElementById('article-cover'));
+      const ogImg = document.getElementById('og-image');
+      if (ogImg) ogImg.setAttribute('content', cleanImg);
+    }
+
+    if (queryDesc && queryDesc.trim().length > 0) {
+      const d = decodeURIComponent(queryDesc);
+      document.getElementById('article-desc').textContent = d;
+      const ogDesc = document.getElementById('og-desc');
+      if (ogDesc) ogDesc.setAttribute('content', d);
+    }
+
+    if (queryAuthor && queryAuthor.trim().length > 0) {
+      document.getElementById('article-author').textContent = decodeURIComponent(queryAuthor);
+    }
+
+    // 2. Clean the browser address bar permanently to /a/articleId (after parameters are read)
+    if (articleId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/a/' + encodeURIComponent(articleId));
+    }
 
     function openInApp() {
       LoreApp.launchApp(deepLinkPath);
@@ -132,39 +182,10 @@
       LoreApp.shareContent(title, `اقرأ مقال "${title}" على منصة لور`);
     }
 
-    if (articleId && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/a/' + encodeURIComponent(articleId));
-    }
-
     // Auto launch on mobile
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
-    // Instant 100% Real Data Rendering from URL Parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const queryTitle = urlParams.get('t') || urlParams.get('title');
-    const queryCover = urlParams.get('img') || urlParams.get('cover');
-    const queryDesc = urlParams.get('d') || urlParams.get('desc');
-    const queryAuthor = urlParams.get('by') || urlParams.get('author');
-
-    if (queryTitle && queryTitle.trim().length > 0) {
-      const title = decodeURIComponent(queryTitle).trim();
-      document.getElementById('article-title').textContent = title;
-      document.getElementById('page-title').textContent = `${title} | مقال على لور`;
-    }
-
-    if (queryCover && queryCover.startsWith('http')) {
-      LoreApp.loadS3Image(decodeURIComponent(queryCover), document.getElementById('article-cover'));
-    }
-
-    if (queryDesc && queryDesc.trim().length > 0) {
-      document.getElementById('article-desc').textContent = decodeURIComponent(queryDesc);
-    }
-
-    if (queryAuthor && queryAuthor.trim().length > 0) {
-      document.getElementById('article-author').textContent = decodeURIComponent(queryAuthor);
-    }
-
-    // Fetch Article from AppSync (if available)
+    // Optional AppSync fallback if authenticated
     async function loadArticleData() {
       if (!articleId) return;
 
@@ -190,15 +211,17 @@
         const result = await response.json();
         const article = result.data?.getArticle;
         if (article) {
-          document.getElementById('article-title').textContent = article.title;
-          document.getElementById('page-title').textContent = `${article.title} | مقال على لور`;
+          if (article.title) {
+            document.getElementById('article-title').textContent = article.title;
+            document.getElementById('page-title').textContent = `${article.title} | مقال على لور`;
+          }
           if (article.shortDescription) document.getElementById('article-desc').textContent = article.shortDescription;
-          if (article.coverImageUrl) document.getElementById('article-cover').src = article.coverImageUrl;
-          if (article.viewsCount) document.getElementById('article-views').textContent = LoreApp.formatCount(article.viewsCount);
-          if (article.likesCount) document.getElementById('article-likes').textContent = LoreApp.formatCount(article.likesCount);
+          if (article.coverImageUrl) LoreApp.loadS3Image(article.coverImageUrl, document.getElementById('article-cover'));
+          if (article.viewsCount !== undefined) document.getElementById('article-views').textContent = LoreApp.formatCount(article.viewsCount);
+          if (article.likesCount !== undefined) document.getElementById('article-likes').textContent = LoreApp.formatCount(article.likesCount);
         }
       } catch (err) {
-        console.log('AppSync fetch fallback');
+        // Fallback to URL parameters already rendered
       }
     }
 

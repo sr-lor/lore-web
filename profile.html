@@ -214,13 +214,7 @@
       LoreApp.shareContent(name, `تابع حساب ${name} على منصة لور`);
     }
 
-    if (userIdOrName && window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', '/u/' + encodeURIComponent(userIdOrName));
-    }
-
-    LoreApp.autoLaunchIfMobile(deepLinkPath);
-
-    // Instant Real Data from URL Parameters
+    // 1. Instant Real Data from URL Parameters (MUST run before replaceState)
     const urlParams = new URLSearchParams(window.location.search);
     const queryName = urlParams.get('t') || urlParams.get('name');
     const queryUsername = urlParams.get('un') || urlParams.get('username');
@@ -232,6 +226,8 @@
       document.getElementById('user-name').textContent = name;
       document.getElementById('page-title').textContent = `${name} | كاتب على لور`;
       document.getElementById('user-avatar-placeholder').textContent = name.charAt(0);
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', name);
     }
 
     if (queryUsername && queryUsername.trim().length > 0) {
@@ -241,14 +237,27 @@
     }
 
     if (queryAvatar && queryAvatar.startsWith('http')) {
+      const cleanAvatar = decodeURIComponent(queryAvatar);
       const avatarEl = document.getElementById('user-avatar');
       const placeholderEl = document.getElementById('user-avatar-placeholder');
-      LoreApp.loadS3Image(decodeURIComponent(queryAvatar), avatarEl, placeholderEl);
+      LoreApp.loadS3Image(cleanAvatar, avatarEl, placeholderEl);
+      const ogImg = document.getElementById('og-image');
+      if (ogImg) ogImg.setAttribute('content', cleanAvatar);
     }
 
     if (queryBio && queryBio.trim().length > 0) {
-      document.getElementById('user-bio').textContent = decodeURIComponent(queryBio);
+      const d = decodeURIComponent(queryBio);
+      document.getElementById('user-bio').textContent = d;
+      const ogDesc = document.getElementById('og-desc');
+      if (ogDesc) ogDesc.setAttribute('content', d);
     }
+
+    // 2. Clean browser address bar to /u/username (after parameters are read)
+    if (userIdOrName && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/u/' + encodeURIComponent(userIdOrName));
+    }
+
+    LoreApp.autoLaunchIfMobile(deepLinkPath);
   </script>
 </body>
 </html>
