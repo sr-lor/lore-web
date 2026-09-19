@@ -246,10 +246,11 @@
     const queryImg = urlParams.get('img');
     const queryDesc = urlParams.get('d');
 
-    if (queryTitle && queryTitle.trim().isNotEmpty) {
+    if (queryTitle && queryTitle.trim().length > 0) {
       document.getElementById('group-name').textContent = decodeURIComponent(queryTitle);
       document.getElementById('page-title').textContent = `انضم إلى ${decodeURIComponent(queryTitle)} | لور`;
       document.getElementById('group-avatar-placeholder').textContent = decodeURIComponent(queryTitle).charAt(0);
+
     } else if (slugOrId) {
       const isCustom = isNaN(slugOrId) && !slugOrId.includes('-');
       if (isCustom) {
@@ -270,9 +271,10 @@
       document.getElementById('group-avatar-placeholder').style.display = 'none';
     }
 
-    if (queryDesc && queryDesc.trim().isNotEmpty) {
+    if (queryDesc && queryDesc.trim().length > 0) {
       document.getElementById('group-desc').textContent = decodeURIComponent(queryDesc);
     }
+
   </script>
 </body>
 </html>

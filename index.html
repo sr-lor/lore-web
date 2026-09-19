@@ -104,21 +104,25 @@
     // Client-side Router Dispatcher for Static Hosting (AWS Amplify / S3 / GitHub Pages)
     (function() {
       const path = window.location.pathname.replace(/^\/|\/$/g, '');
+      const search = window.location.search || '';
       const parts = path.split('/');
       const section = parts[0];
       const id = parts[1];
 
+      const searchPrefix = search ? (search.startsWith('?') ? '&' + search.substring(1) : '&' + search) : '';
+
       if (section === 'novel' || section === 'n') {
-        window.location.replace('/novel.html?id=' + encodeURIComponent(id || ''));
+        window.location.replace('/novel.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       } else if (section === 'community' || section === 'c' || section === 'join') {
-        window.location.replace('/community.html?id=' + encodeURIComponent(id || ''));
+        window.location.replace('/community.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       } else if (section === 'article' || section === 'a') {
-        window.location.replace('/article.html?id=' + encodeURIComponent(id || ''));
+        window.location.replace('/article.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       } else if (section === 'character' || section === 'char') {
-        window.location.replace('/character.html?id=' + encodeURIComponent(id || ''));
+        window.location.replace('/character.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       }
     })();
   </script>
+
 </body>
 </html>
 

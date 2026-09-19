@@ -28,10 +28,12 @@ const LoreApp = {
   },
 
   getPathId() {
+    const fromQuery = new URLSearchParams(window.location.search).get('id');
+    if (fromQuery && fromQuery.trim().length > 0) return decodeURIComponent(fromQuery.trim());
     const segments = window.location.pathname.split('/').filter(Boolean);
-    // Returns last segment (e.g., ID or slug)
-    return segments.length > 1 ? decodeURIComponent(segments[1]) : (new URLSearchParams(window.location.search).get('id') || '');
+    return segments.length > 1 ? decodeURIComponent(segments[1]) : '';
   },
+
 
   /**
    * Directly attempt to launch the Lore app via custom scheme
