@@ -214,6 +214,10 @@
       LoreApp.shareContent(name, `تابع حساب ${name} على منصة لور`);
     }
 
+    if (userIdOrName && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/u/' + encodeURIComponent(userIdOrName));
+    }
+
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
     // Instant Real Data from URL Parameters
@@ -238,9 +242,8 @@
 
     if (queryAvatar && queryAvatar.startsWith('http')) {
       const avatarEl = document.getElementById('user-avatar');
-      avatarEl.src = decodeURIComponent(queryAvatar);
-      avatarEl.style.display = 'block';
-      document.getElementById('user-avatar-placeholder').style.display = 'none';
+      const placeholderEl = document.getElementById('user-avatar-placeholder');
+      LoreApp.loadS3Image(decodeURIComponent(queryAvatar), avatarEl, placeholderEl);
     }
 
     if (queryBio && queryBio.trim().length > 0) {

@@ -139,6 +139,10 @@
       LoreApp.shareContent(title, `اقرأ رواية ${title} على تطبيق لور`);
     }
 
+    if (novelId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/n/' + encodeURIComponent(novelId));
+    }
+
     // Direct app launching on mobile visit if app installed
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
@@ -157,7 +161,7 @@
     }
 
     if (queryCover && queryCover.startsWith('http')) {
-      document.getElementById('novel-cover').src = decodeURIComponent(queryCover);
+      LoreApp.loadS3Image(decodeURIComponent(queryCover), document.getElementById('novel-cover'));
     }
 
     if (queryDesc && queryDesc.trim().length > 0) {

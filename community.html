@@ -229,6 +229,11 @@
     const slugOrId = LoreApp.getPathId();
     let activeRoomId = slugOrId;
 
+    // Keep the browser address bar clean and permanent (/c/xxxx)
+    if (slugOrId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/c/' + encodeURIComponent(slugOrId));
+    }
+
     function joinInApp() {
       LoreApp.launchApp(`c/${activeRoomId}`);
     }
@@ -241,7 +246,7 @@
     // Auto Launch on mobile if direct visit
     LoreApp.autoLaunchIfMobile(`c/${slugOrId}`);
 
-    // Instant initial render from URL parameters (100% Real Data Guaranteed)
+    // Instant initial render from URL parameters
     const queryTitle = urlParams.get('t') || urlParams.get('title') || urlParams.get('name');
     const queryImg = urlParams.get('img') || urlParams.get('image') || urlParams.get('avatar');
     const queryDesc = urlParams.get('d') || urlParams.get('desc') || urlParams.get('description');
@@ -269,9 +274,8 @@
 
     if (queryImg && queryImg.startsWith('http')) {
       const avatarEl = document.getElementById('group-avatar');
-      avatarEl.src = decodeURIComponent(queryImg);
-      avatarEl.style.display = 'block';
-      document.getElementById('group-avatar-placeholder').style.display = 'none';
+      const placeholderEl = document.getElementById('group-avatar-placeholder');
+      LoreApp.loadS3Image(decodeURIComponent(queryImg), avatarEl, placeholderEl);
     }
 
     if (queryDesc && queryDesc.trim().length > 0) {

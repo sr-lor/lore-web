@@ -132,6 +132,10 @@
       LoreApp.shareContent(title, `اقرأ مقال "${title}" على منصة لور`);
     }
 
+    if (articleId && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '/a/' + encodeURIComponent(articleId));
+    }
+
     // Auto launch on mobile
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
@@ -149,7 +153,7 @@
     }
 
     if (queryCover && queryCover.startsWith('http')) {
-      document.getElementById('article-cover').src = decodeURIComponent(queryCover);
+      LoreApp.loadS3Image(decodeURIComponent(queryCover), document.getElementById('article-cover'));
     }
 
     if (queryDesc && queryDesc.trim().length > 0) {
