@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">شخصية تفاعلية | لور LORE</title>
+  
+  <meta property="og:type" content="profile">
+  <meta property="og:title" id="og-title" content="شخصية تفاعلية على لور">
+  <meta property="og:description" id="og-desc" content="تحاور مع هذه الشخصية التفاعلية بالذكاء الاصطناعي على تطبيق لور">
+  <meta property="og:image" id="og-image" content="">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <div class="site-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="/" class="app-brand">
+        <div class="app-logo">L</div>
+        <div class="brand-text">
+          <h1>لور • LORE</h1>
+          <p>شخصيات الذكاء الاصطناعي</p>
+        </div>
+      </a>
+      <button class="header-btn header-btn-primary" onclick="chatInApp()">
+        بدء المحادثة
+      </button>
+    </header>
+
+    <!-- Character Card -->
+    <main class="showcase-card">
+      <div class="showcase-banner">
+        <img id="char-bg" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80" alt="خلفية الشخصية">
+        <div class="banner-overlay"></div>
+        <span class="badge-tag badge-character">✨ شخصية تفاعلية (AI)</span>
+      </div>
+
+      <div class="card-body">
+        <div class="avatar-overlap">
+          <img id="char-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" alt="صورة الشخصية">
+        </div>
+
+        <div class="content-top-spacer">
+          <div class="title-section">
+            <h2 id="char-name">جاري تحميل الشخصية...</h2>
+            <div class="author-meta">
+              <span id="char-role">بطل القصة</span>
+              <span>•</span>
+              <span id="char-difficulty" style="color: var(--accent-gold);">مستوى التفاعل: ذكي</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="margin-top: 15px;">
+          <div class="stat-box">
+            <div class="stat-value" id="char-chats">0</div>
+            <div class="stat-label">المحادثات</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="char-views">0</div>
+            <div class="stat-label">المشاهدات</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="char-likes">0</div>
+            <div class="stat-label">الإعجابات</div>
+          </div>
+        </div>
+
+        <div class="description-box" id="char-desc">
+          شخصية فريدة تمتلك خلفية درامية ووعياً بمجريات الرواية. يمكنك التحدث معها ومناقشة تفاصيل القصة وسؤالها عن أسرارها الخاصة.
+        </div>
+
+        <div class="tags-row" id="char-traits">
+          <span class="tag-pill">شجاع</span>
+          <span class="tag-pill">غامض</span>
+          <span class="tag-pill">حكيم</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn-cta-primary" onclick="chatInApp()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            بدء الدردشة مع الشخصية في التطبيق
+          </button>
+          
+          <div class="secondary-actions">
+            <button class="btn-secondary" onclick="LoreApp.copyCurrentLink(this)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              نسخ الرابط
+            </button>
+            <button class="btn-secondary" onclick="shareCharacter()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- App Download Banner -->
+    <section id="app-download-banner" class="download-banner">
+      <div class="download-info">
+        <h3>جرب الدردشة التفاعلية مع أبطال الروايات</h3>
+        <p>ردود صوتية طبيعية، ذكاء وسياق متصل بأحداث كل فصل تقرأه</p>
+      </div>
+      <div class="store-badges">
+        <a href="https://play.google.com/store" class="store-btn" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://apple.com/app-store" class="store-btn" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/privacy">سياسة الخصوصية</a>
+        <span>•</span>
+        <a href="/terms">شروط الاستخدام</a>
+        <span>•</span>
+        <a href="/delete-account">طلب حذف الحساب</a>
+      </div>
+      <p>© 2026 منصة لور (Lore). جميع الحقوق محفوظة.</p>
+    </footer>
+  </div>
+
+  <script src="/assets/js/app.js"></script>
+  <script>
+    const characterId = LoreApp.getPathId();
+    const deepLinkPath = `character/${characterId}`;
+
+    function chatInApp() {
+      LoreApp.launchApp(deepLinkPath);
+    }
+
+    function shareCharacter() {
+      const name = document.getElementById('char-name').textContent;
+      LoreApp.shareContent(name, `تحدث مع شخصية ${name} التفاعلية على تطبيق لور`);
+    }
+
+    // Auto Launch on mobile
+    LoreApp.autoLaunchIfMobile(deepLinkPath);
+
+    // Fetch Character Data from AppSync
+    async function loadCharacterData() {
+      if (!characterId) return;
+
+      const query = `
+        query GetCharacter($id: String!) {
+          getCharacter(id: $id) {
+            id
+            name
+            imageUrl
+            role
+            personalityTraits
+            backstorySummary
+            viewsCount
+            likesCount
+            chatCount
+            chatBackgroundUrl
+          }
+        }
+      `;
+
+      try {
+        const response = await fetch(LoreConfig.appsyncUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, variables: { id: characterId } })
+        });
+        const result = await response.json();
+        const char = result.data?.getCharacter;
+        if (char) {
+          document.getElementById('char-name').textContent = char.name;
+          document.getElementById('page-title').textContent = `${char.name} | شخصية على لور`;
+          if (char.role) document.getElementById('char-role').textContent = char.role;
+          if (char.imageUrl) document.getElementById('char-avatar').src = char.imageUrl;
+          if (char.chatBackgroundUrl) document.getElementById('char-bg').src = char.chatBackgroundUrl;
+          if (char.backstorySummary) document.getElementById('char-desc').textContent = char.backstorySummary;
+          if (char.viewsCount) document.getElementById('char-views').textContent = LoreApp.formatCount(char.viewsCount);
+          if (char.likesCount) document.getElementById('char-likes').textContent = LoreApp.formatCount(char.likesCount);
+          if (char.chatCount) document.getElementById('char-chats').textContent = LoreApp.formatCount(char.chatCount);
+          if (char.personalityTraits && char.personalityTraits.length > 0) {
+            const traitsContainer = document.getElementById('char-traits');
+            traitsContainer.innerHTML = char.personalityTraits.map(t => `<span class="tag-pill">${t}</span>`).join('');
+          }
+        }
+      } catch (err) {
+        console.log('AppSync fetch fallback');
+      }
+    }
+
+    loadCharacterData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">دعوة انضمام لمجتمع | لور LORE</title>
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" id="og-title" content="دعوة للانضمام إلى مجتمع على لور">
+  <meta property="og:description" id="og-desc" content="انضم إلى مجتمع الرواية وشارك في النقاشات الحية وتواصل مع القراء">
+  <meta property="og:image" id="og-image" content="">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <div class="site-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="/" class="app-brand">
+        <div class="app-logo">L</div>
+        <div class="brand-text">
+          <h1>لور • LORE</h1>
+          <p>المجتمعات والقنوات</p>
+        </div>
+      </a>
+      <button class="header-btn header-btn-primary" onclick="joinInApp()">
+        دخول المجتمع
+      </button>
+    </header>
+
+    <!-- Community Card -->
+    <main class="showcase-card">
+      <div class="showcase-banner">
+        <img id="community-cover" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="غلاف المجتمع">
+        <div class="banner-overlay"></div>
+        <span id="badge-container" class="badge-tag badge-pro">👑 مجتمع موثّق</span>
+      </div>
+
+      <div class="card-body">
+        <div class="title-section">
+          <h2 id="community-name">جاري تحميل المجتمع...</h2>
+          <div class="author-meta">
+            <span id="community-type">غرفة محادثة عامة</span>
+            <span>•</span>
+            <span id="custom-link-indicator" style="color: var(--accent-gold); display: none;">رابط مخصص (Prime)</span>
+          </div>
+        </div>
+
+        <div class="description-box" id="community-desc">
+          مرحباً بك في مجتمعنا! انضم إلينا لمناقشة أحدث الفصول، النظريات، والتواصل مع الكاتب وباقي الأعضاء.
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value" id="community-members">مجتمع نشط</div>
+            <div class="stat-label">الحالة</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">💬 محادثات</div>
+            <div class="stat-label">نقاشات حية</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">⚡ استطلاعات</div>
+            <div class="stat-label">وتصويتات أسبوعية</div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button class="btn-cta-primary" onclick="joinInApp()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            الانضمام للمجتمع في تطبيق لور
+          </button>
+          
+          <div class="secondary-actions">
+            <button class="btn-secondary" onclick="LoreApp.copyCurrentLink(this)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              نسخ الرابط
+            </button>
+            <button class="btn-secondary" onclick="shareCommunity()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+              دعوة الأصدقاء
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- App Download Banner -->
+    <section id="app-download-banner" class="download-banner">
+      <div class="download-info">
+        <h3>انضم للدردشة التفاعلية الآن</h3>
+        <p>ملصقات حصرية، رسائل صوتية، وإشعارات فورية بكل جديد في غرفتك المفضلة</p>
+      </div>
+      <div class="store-badges">
+        <a href="https://play.google.com/store" class="store-btn" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://apple.com/app-store" class="store-btn" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/privacy">سياسة الخصوصية</a>
+        <span>•</span>
+        <a href="/terms">شروط الاستخدام</a>
+        <span>•</span>
+        <a href="/delete-account">طلب حذف الحساب</a>
+      </div>
+      <p>© 2026 منصة لور (Lore). جميع الحقوق محفوظة.</p>
+    </footer>
+  </div>
+
+  <script src="/assets/js/app.js"></script>
+  <script>
+    const slugOrId = LoreApp.getPathId();
+    // Maps to lore://join/:slugOrId deep link
+    const deepLinkPath = `join/${slugOrId}`;
+
+    function joinInApp() {
+      LoreApp.launchApp(deepLinkPath);
+    }
+
+    function shareCommunity() {
+      const name = document.getElementById('community-name').textContent;
+      LoreApp.shareContent(`انضم إلى ${name}`, `أدعوك للانضمام إلى مجتمع ${name} على لور`);
+    }
+
+    // Direct launch on mobile
+    LoreApp.autoLaunchIfMobile(deepLinkPath);
+
+    // Initial label formatting
+    if (slugOrId) {
+      const isCustom = isNaN(slugOrId) && !slugOrId.includes('-');
+      const formattedName = decodeURIComponent(slugOrId).replace(/[-_]/g, ' ');
+      document.getElementById('community-name').textContent = `مجتمع ${formattedName}`;
+      document.getElementById('page-title').textContent = `انضم إلى مجتمع ${formattedName} | لور`;
+
+      if (isCustom) {
+        document.getElementById('custom-link-indicator').style.display = 'inline';
+      }
+    }
+
+    // Dynamic Fetch from AppSync
+    async function loadCommunityData() {
+      if (!slugOrId) return;
+
+      const query = `
+        query GetChatRoom($id: String!) {
+          getChatRoom(id: $id) {
+            id
+            name
+            description
+            imageUrl
+            metadata
+          }
+        }
+      `;
+
+      try {
+        const response = await fetch(LoreConfig.appsyncUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, variables: { id: slugOrId } })
+        });
+        const result = await response.json();
+        const room = result.data?.getChatRoom;
+        if (room) {
+          document.getElementById('community-name').textContent = room.name;
+          document.getElementById('page-title').textContent = `${room.name} | مجتمع على لور`;
+          if (room.description) document.getElementById('community-desc').textContent = room.description;
+          if (room.imageUrl) document.getElementById('community-cover').src = room.imageUrl;
+          
+          if (room.metadata) {
+            try {
+              const meta = typeof room.metadata === 'string' ? JSON.parse(room.metadata) : room.metadata;
+              if (meta.is_pro || meta.custom_slug) {
+                document.getElementById('custom-link-indicator').style.display = 'inline';
+              }
+            } catch (e) {}
+          }
+        }
+      } catch (err) {
+        console.log('AppSync fetch fallback');
+      }
+    }
+
+    loadCommunityData();
+  </script>
+</body>
+</html>

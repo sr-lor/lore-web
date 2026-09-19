@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طلب حذف الحساب | لور LORE</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--dark-card-border);
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--primary-blue);
+    }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    }
+    .btn-danger:hover {
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <div class="site-container">
+    <header class="app-header">
+      <a href="/" class="app-brand">
+        <div class="app-logo">L</div>
+        <div class="brand-text">
+          <h1>لور • LORE</h1>
+          <p>إدارة الحساب والأمان</p>
+        </div>
+      </a>
+      <a href="/" class="header-btn header-btn-primary">الرئيسية</a>
+    </header>
+
+    <main class="showcase-card">
+      <div class="card-body">
+        <div class="title-section" style="margin-bottom: 20px;">
+          <h2>طلب حذف الحساب والبيانات الشخصية</h2>
+          <p style="color: var(--text-secondary); font-size: 13.5px;">وفقاً لسياسات الخصوصية ومتطلبات Google Play و Apple App Store</p>
+        </div>
+
+        <div class="warning-box">
+          ⚠️ <strong>تنبيه هام:</strong> حذف الحساب إجراء نهائي لا يمكن التراجع عنه. سيتم حذف ملفك الشخصي، رواياتك المنشورة، مسوداتك، ومشاركاتك ومحادثاتك في المجتمعات نهائياً وفق الشروط.
+        </div>
+
+        <form id="delete-form" onsubmit="handleDeleteSubmit(event)">
+          <div class="form-group">
+            <label for="user-email">البريد الإلكتروني المسجل في التطبيق</label>
+            <input type="email" id="user-email" class="form-control" required placeholder="name@example.com" dir="ltr">
+          </div>
+
+          <div class="form-group">
+            <label for="username">اسم المستخدم (Username)</label>
+            <input type="text" id="username" class="form-control" required placeholder="@username" dir="ltr">
+          </div>
+
+          <div class="form-group">
+            <label for="reason">سبب طلب الحذف (اختياري)</label>
+            <textarea id="reason" class="form-control" rows="3" placeholder="أخبرنا بالسبب لمساعدتنا في تحسين التجربة..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-cta-primary btn-danger">
+            تأكيد وإرسال طلب الحذف
+          </button>
+        </form>
+
+        <div id="success-message" style="display: none; text-align: center; padding: 24px;">
+          <div style="font-size: 40px; margin-bottom: 12px;">✅</div>
+          <h3 style="font-size: 18px; margin-bottom: 8px;">تم استلام طلبك بنجاح</h3>
+          <p style="color: var(--text-secondary); font-size: 14px;">سنقوم بمراجعة الطلب وحذف كافة البيانات المرتبطة بالحساب خلال فترة أقصاها 14 يوماً عمل.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/privacy">سياسة الخصوصية</a>
+        <span>•</span>
+        <a href="/terms">شروط الاستخدام</a>
+        <span>•</span>
+        <a href="/">الرئيسية</a>
+      </div>
+      <p>© 2026 منصة لور (Lore). جميع الحقوق محفوظة.</p>
+    </footer>
+  </div>
+
+  <script src="/assets/js/app.js"></script>
+  <script>
+    function handleDeleteSubmit(e) {
+      e.preventDefault();
+      document.getElementById('delete-form').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "lore-web-share",
+  "version": "1.0.0",
+  "description": "Ultra-lightweight, high-performance web preview & deep-linking portal for Lore platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "lore",
+    "novels",
+    "reading",
+    "deep-link",
+    "share"
+  ],
+  "author": "Lore Team",
+  "license": "MIT"
+}

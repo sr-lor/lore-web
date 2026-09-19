@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/novel/(.*)", "destination": "/novel.html" },
+    { "source": "/n/(.*)", "destination": "/novel.html" },
+    { "source": "/community/(.*)", "destination": "/community.html" },
+    { "source": "/c/(.*)", "destination": "/community.html" },
+    { "source": "/join/(.*)", "destination": "/community.html" },
+    { "source": "/article/(.*)", "destination": "/article.html" },
+    { "source": "/a/(.*)", "destination": "/article.html" },
+    { "source": "/character/(.*)", "destination": "/character.html" },
+    { "source": "/char/(.*)", "destination": "/character.html" },
+    { "source": "/delete-account", "destination": "/delete-account.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
+      ]
+    }
+  ]
+}
