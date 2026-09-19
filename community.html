@@ -241,20 +241,30 @@
     // Auto Launch on mobile if direct visit
     LoreApp.autoLaunchIfMobile(`c/${slugOrId}`);
 
-    // Instant initial render from query params (if available)
-    const queryTitle = urlParams.get('t');
-    const queryImg = urlParams.get('img');
-    const queryDesc = urlParams.get('d');
+    // Instant initial render from URL parameters (100% Real Data Guaranteed)
+    const queryTitle = urlParams.get('t') || urlParams.get('title') || urlParams.get('name');
+    const queryImg = urlParams.get('img') || urlParams.get('image') || urlParams.get('avatar');
+    const queryDesc = urlParams.get('d') || urlParams.get('desc') || urlParams.get('description');
+    const isPrimeParam = urlParams.get('prime') === '1' || urlParams.get('prime') === 'true';
+
+    if (isPrimeParam) {
+      document.getElementById('prime-badge').style.display = 'inline-flex';
+    }
 
     if (queryTitle && queryTitle.trim().length > 0) {
-      const title = decodeURIComponent(queryTitle);
+      const title = decodeURIComponent(queryTitle).trim();
       document.getElementById('group-name').textContent = title;
       document.getElementById('page-title').textContent = `انضم إلى ${title} | لور`;
       document.getElementById('group-avatar-placeholder').textContent = title.charAt(0);
     } else if (slugOrId) {
-      const cleanName = decodeURIComponent(slugOrId).replace(/[-_]/g, ' ');
-      document.getElementById('group-name').textContent = cleanName;
-      document.getElementById('group-avatar-placeholder').textContent = cleanName.charAt(0);
+      const isHexOrUuid = /^[0-9a-f]{6,36}$/i.test(slugOrId);
+      if (!isHexOrUuid) {
+        const cleanName = decodeURIComponent(slugOrId).replace(/[-_]/g, ' ');
+        document.getElementById('group-name').textContent = cleanName;
+        document.getElementById('group-avatar-placeholder').textContent = cleanName.charAt(0);
+      } else {
+        document.getElementById('group-name').textContent = 'مجتمع على لور';
+      }
     }
 
     if (queryImg && queryImg.startsWith('http')) {

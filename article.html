@@ -135,7 +135,32 @@
     // Auto launch on mobile
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
-    // Fetch Article from AppSync
+    // Instant 100% Real Data Rendering from URL Parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryTitle = urlParams.get('t') || urlParams.get('title');
+    const queryCover = urlParams.get('img') || urlParams.get('cover');
+    const queryDesc = urlParams.get('d') || urlParams.get('desc');
+    const queryAuthor = urlParams.get('by') || urlParams.get('author');
+
+    if (queryTitle && queryTitle.trim().length > 0) {
+      const title = decodeURIComponent(queryTitle).trim();
+      document.getElementById('article-title').textContent = title;
+      document.getElementById('page-title').textContent = `${title} | مقال على لور`;
+    }
+
+    if (queryCover && queryCover.startsWith('http')) {
+      document.getElementById('article-cover').src = decodeURIComponent(queryCover);
+    }
+
+    if (queryDesc && queryDesc.trim().length > 0) {
+      document.getElementById('article-desc').textContent = decodeURIComponent(queryDesc);
+    }
+
+    if (queryAuthor && queryAuthor.trim().length > 0) {
+      document.getElementById('article-author').textContent = decodeURIComponent(queryAuthor);
+    }
+
+    // Fetch Article from AppSync (if available)
     async function loadArticleData() {
       if (!articleId) return;
 

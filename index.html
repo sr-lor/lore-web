@@ -119,6 +119,8 @@
         window.location.replace('/article.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       } else if (section === 'character' || section === 'char') {
         window.location.replace('/character.html?id=' + encodeURIComponent(id || '') + searchPrefix);
+      } else if (section === 'profile' || section === 'u' || section === 'user') {
+        window.location.replace('/profile.html?id=' + encodeURIComponent(id || '') + searchPrefix);
       }
     })();
   </script>

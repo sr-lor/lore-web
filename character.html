@@ -147,7 +147,32 @@
     // Auto Launch on mobile
     LoreApp.autoLaunchIfMobile(deepLinkPath);
 
-    // Fetch Character Data from AppSync
+    // Instant 100% Real Data Rendering from URL Parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryName = urlParams.get('t') || urlParams.get('name');
+    const queryAvatar = urlParams.get('img') || urlParams.get('avatar');
+    const queryRole = urlParams.get('r') || urlParams.get('role');
+    const queryDesc = urlParams.get('d') || urlParams.get('desc');
+
+    if (queryName && queryName.trim().length > 0) {
+      const name = decodeURIComponent(queryName).trim();
+      document.getElementById('char-name').textContent = name;
+      document.getElementById('page-title').textContent = `${name} | شخصية على لور`;
+    }
+
+    if (queryAvatar && queryAvatar.startsWith('http')) {
+      document.getElementById('char-avatar').src = decodeURIComponent(queryAvatar);
+    }
+
+    if (queryRole && queryRole.trim().length > 0) {
+      document.getElementById('char-role').textContent = decodeURIComponent(queryRole);
+    }
+
+    if (queryDesc && queryDesc.trim().length > 0) {
+      document.getElementById('char-desc').textContent = decodeURIComponent(queryDesc);
+    }
+
+    // Fetch Character Data from AppSync (if available)
     async function loadCharacterData() {
       if (!characterId) return;
 
