@@ -227,10 +227,10 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const slugOrId = LoreApp.getPathId();
-    const deepLinkPath = `join/${slugOrId}`;
+    let activeRoomId = slugOrId;
 
     function joinInApp() {
-      LoreApp.launchApp(deepLinkPath);
+      LoreApp.launchApp(`c/${activeRoomId}`);
     }
 
     function shareGroup() {
@@ -238,30 +238,23 @@
       LoreApp.shareContent(`انضم إلى ${name}`, `أدعوك للانضمام إلى مجموعة ${name} على لور`);
     }
 
-    // Auto Launch on mobile if not navigating back
-    LoreApp.autoLaunchIfMobile(deepLinkPath);
+    // Auto Launch on mobile if direct visit
+    LoreApp.autoLaunchIfMobile(`c/${slugOrId}`);
 
-    // 1. Read parameters passed directly in the link (Instant Real Data)
+    // Instant initial render from query params (if available)
     const queryTitle = urlParams.get('t');
     const queryImg = urlParams.get('img');
     const queryDesc = urlParams.get('d');
 
     if (queryTitle && queryTitle.trim().length > 0) {
-      document.getElementById('group-name').textContent = decodeURIComponent(queryTitle);
-      document.getElementById('page-title').textContent = `انضم إلى ${decodeURIComponent(queryTitle)} | لور`;
-      document.getElementById('group-avatar-placeholder').textContent = decodeURIComponent(queryTitle).charAt(0);
-
+      const title = decodeURIComponent(queryTitle);
+      document.getElementById('group-name').textContent = title;
+      document.getElementById('page-title').textContent = `انضم إلى ${title} | لور`;
+      document.getElementById('group-avatar-placeholder').textContent = title.charAt(0);
     } else if (slugOrId) {
-      const isCustom = isNaN(slugOrId) && !slugOrId.includes('-');
-      if (isCustom) {
-        const cleanName = decodeURIComponent(slugOrId).replace(/[-_]/g, ' ');
-        document.getElementById('group-name').textContent = cleanName;
-        document.getElementById('page-title').textContent = `انضم إلى ${cleanName} | لور`;
-        document.getElementById('prime-badge').style.display = 'inline-flex';
-        document.getElementById('group-avatar-placeholder').textContent = cleanName.charAt(0);
-      } else {
-        document.getElementById('group-name').textContent = 'مجموعة لور';
-      }
+      const cleanName = decodeURIComponent(slugOrId).replace(/[-_]/g, ' ');
+      document.getElementById('group-name').textContent = cleanName;
+      document.getElementById('group-avatar-placeholder').textContent = cleanName.charAt(0);
     }
 
     if (queryImg && queryImg.startsWith('http')) {
@@ -275,6 +268,89 @@
       document.getElementById('group-desc').textContent = decodeURIComponent(queryDesc);
     }
 
+    // Dynamic AppSync Query for Real Group Details
+    async function fetchRealRoomDetails() {
+      if (!slugOrId) return;
+      const clean = slugOrId.trim().toLowerCase();
+
+      const query = `
+        query ListChatRooms {
+          listChatRooms(limit: 500) {
+            items {
+              id
+              name
+              type
+              description
+              imageUrl
+              metadata
+              createdAt
+            }
+          }
+        }
+      `;
+
+      try {
+        const response = await fetch(LoreConfig.appsyncUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query })
+        });
+
+        const result = await response.json();
+        const items = result.data?.listChatRooms?.items || [];
+
+        let matched = null;
+        for (const item of items) {
+          const rId = (item.id || '').toLowerCase();
+          const cleanId = rId.replace(/-/g, '');
+          let meta = {};
+          try {
+            meta = typeof item.metadata === 'string' ? JSON.parse(item.metadata) : (item.metadata || {});
+          } catch (e) {}
+
+          const customSlug = (meta.custom_slug || '').toString().trim().toLowerCase();
+
+          if (customSlug === clean ||
+              rId === clean ||
+              (clean.length >= 6 && cleanId.startsWith(clean)) ||
+              (clean.length >= 6 && rId.startsWith(clean))) {
+            matched = { ...item, parsedMeta: meta };
+            break;
+          }
+        }
+
+        if (matched) {
+          activeRoomId = matched.id;
+          document.getElementById('group-name').textContent = matched.name;
+          document.getElementById('page-title').textContent = `انضم إلى ${matched.name} | لور`;
+
+          if (matched.description && matched.description.trim().length > 0) {
+            document.getElementById('group-desc').textContent = matched.description;
+          }
+
+          // Prime badge strictly for custom slug prime groups
+          const isPrime = matched.parsedMeta?.is_pro === true && matched.parsedMeta?.custom_slug;
+          if (isPrime) {
+            document.getElementById('prime-badge').style.display = 'inline-flex';
+          } else {
+            document.getElementById('prime-badge').style.display = 'none';
+          }
+
+          if (matched.imageUrl && matched.imageUrl.startsWith('http')) {
+            const avatarEl = document.getElementById('group-avatar');
+            avatarEl.src = matched.imageUrl;
+            avatarEl.style.display = 'block';
+            document.getElementById('group-avatar-placeholder').style.display = 'none';
+          } else {
+            document.getElementById('group-avatar-placeholder').textContent = matched.name.charAt(0);
+          }
+        }
+      } catch (err) {
+        console.log('AppSync fetch error:', err);
+      }
+    }
+
+    fetchRealRoomDetails();
   </script>
 </body>
 </html>
