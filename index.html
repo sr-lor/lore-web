@@ -100,5 +100,25 @@
   </div>
 
   <script src="/assets/js/app.js"></script>
+  <script>
+    // Client-side Router Dispatcher for Static Hosting (AWS Amplify / S3 / GitHub Pages)
+    (function() {
+      const path = window.location.pathname.replace(/^\/|\/$/g, '');
+      const parts = path.split('/');
+      const section = parts[0];
+      const id = parts[1];
+
+      if (section === 'novel' || section === 'n') {
+        window.location.replace('/novel.html?id=' + encodeURIComponent(id || ''));
+      } else if (section === 'community' || section === 'c' || section === 'join') {
+        window.location.replace('/community.html?id=' + encodeURIComponent(id || ''));
+      } else if (section === 'article' || section === 'a') {
+        window.location.replace('/article.html?id=' + encodeURIComponent(id || ''));
+      } else if (section === 'character' || section === 'char') {
+        window.location.replace('/character.html?id=' + encodeURIComponent(id || ''));
+      }
+    })();
+  </script>
 </body>
 </html>
+
