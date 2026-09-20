@@ -103,13 +103,21 @@
   </style>
 </head>
 <body>
-  <div class="ambient-glow"></div>
-  <div class="loading-card">
+  <div id="ambient-glow" class="ambient-glow"></div>
+  <div id="app-loader" class="loading-card">
     <div class="loader-ring"></div>
     <div class="brand-title">LORE</div>
     <div class="brand-sub">جاري التحميل...</div>
   </div>
   <script>
+    function removeAppLoader() {
+      var loader = document.getElementById('app-loader');
+      if (loader) loader.remove();
+      var glow = document.getElementById('ambient-glow');
+      if (glow) glow.remove();
+    }
+    window.addEventListener('flutter-first-frame', removeAppLoader);
+
     // Clear stale service workers and browser caches from older builds
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(function(registrations) {
@@ -126,6 +134,6 @@
       });
     }
   </script>
-  <script src="flutter_bootstrap.js?v=3" async></script>
+  <script src="flutter_bootstrap.js?v=4" async></script>
 </body>
 </html>
