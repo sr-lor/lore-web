@@ -109,6 +109,23 @@
     <div class="brand-title">LORE</div>
     <div class="brand-sub">جاري التحميل...</div>
   </div>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    // Clear stale service workers and browser caches from older builds
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (var r of registrations) {
+          r.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (var name of names) {
+          caches.delete(name);
+        }
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js?v=3" async></script>
 </body>
 </html>
