@@ -23,7 +23,26 @@
       "require_symbols": true,
       "require_uppercase": true
     },
-    "unauthenticated_identities_enabled": true
+    "unauthenticated_identities_enabled": true,
+    "oauth": {
+      "domain": "lore-app-auth.auth.eu-west-1.amazoncognito.com",
+      "redirect_sign_in_uri": [
+        "lore://callback/"
+      ],
+      "redirect_sign_out_uri": [
+        "lore://signout/"
+      ],
+      "response_type": "code",
+      "scopes": [
+        "email",
+        "openid",
+        "profile",
+        "aws.cognito.signin.user.admin"
+      ],
+      "identity_providers": [
+        "GOOGLE"
+      ]
+    }
   },
   "data": {
     "url": "https://b5gwc56ssvdsfhx7qiypcensuq.appsync-api.eu-west-1.amazonaws.com/graphql",
