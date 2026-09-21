@@ -122,6 +122,7 @@
       if (glow) glow.remove();
     }
     window.addEventListener('flutter-first-frame', removeAppLoader);
+    setTimeout(removeAppLoader, 3000);
 
     // Clear stale service workers and browser caches from older builds
     if ('serviceWorker' in navigator) {
@@ -139,6 +140,6 @@
       });
     }
   </script>
-  <script src="flutter_bootstrap.js?v=10" async></script>
+  <script src="flutter_bootstrap.js?v=20260921_21" async></script>
 </body>
 </html>
