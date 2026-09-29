@@ -3,90 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الخصوصية - تطبيق لور (Lore)</title>
+    <title>سياسة الخصوصية والاستخدام | لور LORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0A0D14;
+            --surface-color: #111827;
+            --surface-card: rgba(17, 24, 39, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #2563EB;
+            --primary-glow: rgba(37, 99, 235, 0.35);
+            --text-main: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --accent-blue: #3B82F6;
+            --danger: #EF4444;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            padding: 24px 16px;
+            position: relative;
+            min-height: 100vh;
         }
+
+        .ambient-glow {
+            position: fixed;
+            top: -100px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 500px;
+            height: 350px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(10, 13, 20, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
-            padding: 10px;
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        h1 {
+
+        .header {
             text-align: center;
-            border-bottom: 2px solid rgba(150, 150, 150, 0.3);
-            padding-bottom: 10px;
+            padding: 30px 20px;
+            margin-bottom: 24px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
-        h2 {
-            margin-top: 30px;
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, #1D4ED8, #2563EB);
+            color: #fff;
+            font-size: 26px;
+            font-weight: 900;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
-        p {
-            margin-bottom: 15px;
-        }
-        ul {
-            margin-bottom: 15px;
-        }
-        li {
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #FFFFFF;
             margin-bottom: 8px;
         }
+
+        .update-date {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .intro-card {
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            color: #E5E7EB;
+        }
+
+        .content-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(12px);
+        }
+
+        h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #E5E7EB;
+            margin: 16px 0 8px 0;
+        }
+
+        p {
+            font-size: 14.5px;
+            color: #D1D5DB;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 4px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            position: relative;
+            padding-right: 22px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #D1D5DB;
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            right: 4px;
+            color: var(--primary);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            color: #93C5FD;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            margin-left: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-links a {
+            color: #93C5FD;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            opacity: 0.7;
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
+    <div class="ambient-glow"></div>
+
     <div class="container">
-        <h1>سياسة الخصوصية لتطبيق لور (Lore)</h1>
-        <p>تاريخ التحديث: 1 مارس 2024</p>
+        <header class="header">
+            <div class="logo-badge">L</div>
+            <h1>سياسة الخصوصية والاستخدام — تطبيق لور (LORE)</h1>
+            <p class="update-date">تاريخ آخر تحديث: 29 سبتمبر 2026</p>
+        </header>
 
-        <p>نحن في "لور" (Lore) نولي أهمية قصوى لخصوصيتك. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية معلوماتك الشخصية عند استخدامك لتطبيقنا.</p>
-
-        <h2>1. المعلومات التي نجمعها</h2>
-        <p>نجمع المعلومات التالية لتقديم خدمة أفضل:</p>
-        <ul>
-            <li><strong>معلومات الحساب:</strong> مثل البريد الإلكتروني، واسم المستخدم عند إنشاء حساب.</li>
-            <li><strong>المحتوى الذي تنشئه:</strong> الروايات، التعليقات، والتقييمات التي تنشرها.</li>
-            <li><strong>بيانات الاستخدام:</strong> معلومات حول كيفية تفاعلك مع التطبيق (الروايات التي تقرأها، وقت القراءة).</li>
-            <li><strong>معلومات الجهاز:</strong> نوع الجهاز، إصدار نظام التشغيل، ومعرفات الجهاز الفريدة.</li>
-        </ul>
-
-        <h2>2. كيف نستخدم معلوماتك</h2>
-        <p>نستخدم البيانات التي نجمعها من أجل:</p>
-        <ul>
-            <li>تقديم وتحسين خدمات التطبيق وتجربة المستخدم.</li>
-            <li>تخصيص المحتوى والتوصيات بناءً على اهتماماتك.</li>
-            <li>التواصل معك بخصوص تحديثات التطبيق أو الدعم الفني.</li>
-            <li>حماية أمن التطبيق ومنع الأنشطة الاحتيالية.</li>
-        </ul>
-
-        <h2>3. مشاركة البيانات مع أطراف ثالثة</h2>
-        <p>نحن لا نبيع بياناتك الشخصية. قد نشارك معلوماتك في الحالات التالية فقط:</p>
-        <ul>
-            <li><strong>مزودي الخدمة:</strong> مثل Supabase و Firebase لإدارة قواعد البيانات والإشعارات.</li>
-            <li><strong>الامتثال للقانون:</strong> إذا كان ذلك مطلوباً بموجب القانون أو لحماية حقوقنا القانونية.</li>
-        </ul>
-
-        <h2>4. أمن البيانات</h2>
-        <p>نحن نطبق إجراءات أمنية تقنية وإدارية لحماية بياناتك من الوصول غير المصرح به أو الفقدان أو التعديل.</p>
-
-        <h2>5. حقوقك</h2>
-        <p>لك الحق في الوصول إلى معلوماتك الشخصية أو تصحيحها أو طلب حذف حسابك وبياناتك في أي وقت من خلال إعدادات التطبيق أو مراسلتنا.</p>
-
-        <h2>6. تغييرات على سياسة الخصوصية</h2>
-        <p>قد نقوم بتحديث هذه السياسة من وقت لآخر. سنقوم بإخطارك بأي تغييرات جوهرية عبر التطبيق.</p>
-
-        <h2>7. اتصل بنا</h2>
-        <p>إذا كان لديك أي أسئلة حول سياسة الخصوصية، يرجى التواصل معنا عبر البريد الإلكتروني: support@lore-app.com</p>
-
-        <div class="footer">
-            &copy; 2024 تطبيق لور (Lore). جميع الحقوق محفوظة.
+        <div class="intro-card">
+            نحن في منصة وتطبيق <strong>لور (LORE)</strong> نلتزم بأعلى معايير الشفافية وحماية خصوصية بياناتك الشخصية. توضح هذه الوثيقة تفصيلياً طبيعة البيانات التي نجمعها، كيفية معالجتها وحمايتها، وحقوقك الكاملة في إدارة بياناتك أو حذفها وفق متطلبات متاجر التطبيقات وسياسات الخصوصية العالمية.
         </div>
+
+        <main>
+            <section class="content-card">
+                <h2>1. المعلومات التي نقوم بجمعها</h2>
+                <p>لتقديم تجربة قراءة وتأليف ومجتمع أدبي متكامل، نقوم بجمع البيانات التالية بالقدر اللازم لتقديم الخدمات:</p>
+                <ul>
+                    <li><strong>معلومات الحساب والتسجيل:</strong> مثل الاسم الكامل، اسم المستخدم (Username)، عنوان البريد الإلكتروني، الصورة الشخصية (Avatar)، النبذة التعريفية (Bio)، والبلد عند التسجيل عبر البريد أو تسجيل الدخول السريع بحساب Google.</li>
+                    <li><strong>المحتوى الأدبي والتفاعلي:</strong> نصوص الروايات، الفصول، المسودات، المقالات، التعليقات، المراجعات والتقييمات، وقوائم القراءة والمفضلة.</li>
+                    <li><strong>الوسائط والمرفقات:</strong> صور أغلفة الروايات، الصور ومقاطع الفيديو المنشورة في اليوميات (الستوري)، والتسجيلات الصوتية أو الملصقات في الدردشة.</li>
+                    <li><strong>محادثات شخصيات الروايات والذكاء الاصطناعي:</strong> سجل الرسائل والمطالبات المتبادلة مع شخصيات الروايات المدعومة بالذكاء الاصطناعي (Gemini AI) لتوليد ردود تفاعلية سياقية تناسب أحداث الرواية وشخصياتها.</li>
+                    <li><strong>المعرّفات الإعلانية ومعلومات الجهاز:</strong> معرّف الإعلانات الخاص بنظام التشغيل (Google Advertising ID) لتقديم إعلانات مخصصة أو عامة عبر Google Mobile Ads (AdMob)، ونوع الجهاز، وإصدار نظام التشغيل لضمان استقرار التطبيق.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>2. كيف نستخدم معلوماتك</h2>
+                <p>تُستخدم البيانات المجمعة للأغراض المشروعة التالية فقط:</p>
+                <ul>
+                    <li>إدارة حسابك الشخصي وتمكينك من نشر وتصفح الروايات ومزامنتها سحابياً.</li>
+                    <li>تشغيل ميزات الذكاء الاصطناعي المبتكرة للتحاور مع شخصيات وأبطال الروايات وتقديم توصيات قراءة دقيقة.</li>
+                    <li>تيسير التواصل الآمن بين أعضاء مجتمعات القراءة وغرف المحادثة الأدبية.</li>
+                    <li>عرض إعلانات ملائمة عبر شبكة Google AdMob لدعم المحتوى المجاني للمنصة.</li>
+                    <li>حماية مجتمع المستخدمين من السلوكيات غير القانونية، الاحتيال، أو المحتوى المخالف للآداب العامة.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>3. الأذونات المطلوبة على جهازك</h2>
+                <p>يطلب تطبيق LORE فقط الأذونات الضرورية للميزات التي يفعّلها المستخدم برغبته:</p>
+                <ul>
+                    <li><strong>قراءة الصور والوسائط (READ_MEDIA_IMAGES):</strong> لاختيار ورفع صور الغلاف للروايات، صورة الملف الشخصي، مشاركة الصور بالدردشة، ونشر الصور في الستوري وصناعة الملصقات.</li>
+                    <li><strong>قراءة مقاطع الفيديو (READ_MEDIA_VIDEO):</strong> لاختيار ومشاركة مقاطع الفيديو القصيرة في الدردشة وميزة القصص (الستوري).</li>
+                    <li><strong>الميكروفون وتسجيل الصوت:</strong> لتسجيل الرسائل الصوتية داخل المحادثات والستوري الصوتي، ولا يتم تسجيل أي صوت في الخلفية.</li>
+                    <li><strong>الإشعارات (Notifications):</strong> لإرسال تنبيهات عند نشر فصول جديدة، وصول رسائل جديدة، أو تفاعل المستخدمين مع منشوراتك.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>4. أمان البيانات والبنية السحابية</h2>
+                <p>نعتمد على أرقى وأحدث البنى التحتية السحابية المعتمدة عالمياً:</p>
+                <ul>
+                    <li><strong>خدمات أمازون السحابية (AWS):</strong> نستخدم AWS Amplify و AWS Cognito لتشفير الهوية وإدارة الجلسات، وقواعد بيانات DynamoDB المشفرة وتخزين S3 المحمي.</li>
+                    <li><strong>التشفير والحماية:</strong> يتم نقل جميع البيانات عبر اتصالات مشفرة بروتوكول HTTPS/TLS عالي الأمان لحمايتها من أي اعتراض.</li>
+                    <li><strong>عدم بيع البيانات:</strong> نحن نتعهد بشكل قاطع بعدم بيع أو تأجير أي بيانات شخصية تخص مستخدمينا لأي جهة تسويقية أو تجارية.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>5. حق حذف الحساب والبيانات (Google Play Compliant)</h2>
+                <p>لك كامل الحرية والحق الدائم في حذف حسابك وكافة البيانات المرتبطة به في أي وقت عبر طريقتين رسميتين:</p>
+                <ul>
+                    <li><strong>الحذف المباشر من التطبيق:</strong> عبر التوجه إلى صفحة (الإعدادات > الحساب والأمان > حذف الحساب والبيانات نهائياً)، حيث يتاح لك خيار تأكيد الحذف الفوري لكافة بياناتك.</li>
+                    <li><strong>الحذف عبر رابط الويب المخصص:</strong> يمكنك طلب وحذف حسابك مباشرة من خلال صفحة: <a href="/delete-account" style="color: #93C5FD; font-weight: bold;">طلب حذف الحساب (lore-app.com/delete-account)</a> دون الحاجة لتثبيت التطبيق.</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 13.5px; color: #FCA5A5;">عند تأكيد الحذف، يتم مسح بيانات الدخول، الملف الشخصي، الروايات المنشورة والمسودات، المحادثات، والرصيد نهائياً وبشكل لا يمكن التراجع عنه.</p>
+            </section>
+
+            <section class="content-card">
+                <h2>6. التواصل والدعم الفني</h2>
+                <p>إذا كان لديك أي استفسار أو طلب يتعلق بخصوصيتك أو بياناتك الشخصية، يرجى مراسلتنا عبر البريد الإلكتروني الرسمي:</p>
+                <p style="direction: ltr; text-align: right;"><a href="mailto:support@lore-app.com" style="color: #60A5FA; font-weight: 700; text-decoration: none;">support@lore-app.com</a></p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="nav-links">
+                <a href="/privacy">سياسة الخصوصية</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/terms">شروط الاستخدام والقوانين</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/delete-account" style="color: #F87171;">طلب حذف الحساب</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/">الصفحة الرئيسية</a>
+            </div>
+            <p style="margin-top: 16px;">© 2026 منصة لور (LORE). جميع الحقوق محفوظة.</p>
+        </footer>
     </div>
 </body>
 </html>

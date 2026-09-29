@@ -3,92 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شروط الاستخدام - تطبيق لور (Lore)</title>
+    <title>شروط الاستخدام والقوانين | لور LORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0A0D14;
+            --surface-color: #111827;
+            --surface-card: rgba(17, 24, 39, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary: #2563EB;
+            --primary-glow: rgba(37, 99, 235, 0.35);
+            --text-main: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --accent-blue: #3B82F6;
+            --danger: #EF4444;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            padding: 24px 16px;
+            position: relative;
+            min-height: 100vh;
         }
+
+        .ambient-glow {
+            position: fixed;
+            top: -100px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 500px;
+            height: 350px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(10, 13, 20, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
-            padding: 10px;
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        h1 {
+
+        .header {
             text-align: center;
-            border-bottom: 2px solid rgba(150, 150, 150, 0.3);
-            padding-bottom: 10px;
+            padding: 30px 20px;
+            margin-bottom: 24px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
-        h2 {
-            margin-top: 30px;
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, #1D4ED8, #2563EB);
+            color: #fff;
+            font-size: 26px;
+            font-weight: 900;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
-        p {
-            margin-bottom: 15px;
-        }
-        ul {
-            margin-bottom: 15px;
-        }
-        li {
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #FFFFFF;
             margin-bottom: 8px;
         }
+
+        .update-date {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .intro-card {
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            color: #E5E7EB;
+        }
+
+        .content-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(12px);
+        }
+
+        h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 14.5px;
+            color: #D1D5DB;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            padding-right: 4px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            position: relative;
+            padding-right: 22px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #D1D5DB;
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            right: 4px;
+            color: var(--primary);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-links a {
+            color: #93C5FD;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+
         .footer {
             text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            opacity: 0.7;
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
+    <div class="ambient-glow"></div>
+
     <div class="container">
-        <h1>شروط الاستخدام لتطبيق لور (Lore)</h1>
-        <p>تاريخ التحديث: 1 مارس 2024</p>
+        <header class="header">
+            <div class="logo-badge">L</div>
+            <h1>شروط وقوانين الاستخدام — تطبيق لور (LORE)</h1>
+            <p class="update-date">تاريخ آخر تحديث: 29 سبتمبر 2026</p>
+        </header>
 
-        <p>باستخدامك لتطبيق "لور" (Lore)، فإنك توافق على الالتزام بشروط الاستخدام التالية. يرجى قراءتها بعناية قبل استخدام التطبيق.</p>
-
-        <h2>1. قبول الشروط</h2>
-        <p>يعد دخولك للتطبيق واستخدامه موافقة صريحة منك على هذه الشروط. إذا كنت لا توافق على أي من هذه الشروط، يرجى عدم استخدام التطبيق.</p>
-
-        <h2>2. حساب المستخدم</h2>
-        <ul>
-            <li>أنت مسؤول عن الحفاظ على سرية معلومات حسابك وكلمة المرور الخاصة بك.</li>
-            <li>أنت مسؤول بالكامل عن جميع الأنشطة التي تحدث تحت حسابك.</li>
-            <li>يجب أن تكون المعلومات التي تقدمها دقيقة وحديثة.</li>
-        </ul>
-
-        <h2>3. المحتوى المنشور</h2>
-        <p>عندما تنشر رواية أو فصلاً أو تعليقاً في تطبيق "لور":</p>
-        <ul>
-            <li>تتعهد بأنك تمتلك جميع حقوق الملكية الفكرية لهذا المحتوى أو لديك الإذن اللازم لنشره.</li>
-            <li>تمنح "لور" رخصة غير حصرية لعرض وتوزيع واستخدام هذا المحتوى داخل منصتنا.</li>
-            <li>يُحظر نشر محتوى يحض على الكراهية، أو محتوى غير أخلاقي، أو ينتهك حقوق الآخرين.</li>
-        </ul>
-
-        <h2>4. قواعد السلوك</h2>
-        <p>يوافق المستخدمون على عدم القيام بالتالي:</p>
-        <ul>
-            <li>انتحال شخصية أي فرد أو كيان آخر.</li>
-            <li>استخدام التطبيق لأي غرض غير قانوني.</li>
-            <li>محاولة الوصول غير المصرح به إلى أنظمة التطبيق أو بيانات المستخدمين الآخرين.</li>
-            <li>إرسال رسائل عشوائية (Spam) أو محتوى ترويجي غير مرغوب فيه.</li>
-        </ul>
-
-        <h2>5. حقوق الملكية الفكرية</h2>
-        <p>جميع العلامات التجارية والشعارات والتصاميم والبرمجيات الخاصة بتطبيق "لور" هي ملك حصري لنا ومحمية بموجب قوانين الملكية الفكرية.</p>
-
-        <h2>6. إنهاء الخدمة</h2>
-        <p>نحتفظ بالحق في تعليق أو إنهاء حسابك في أي وقت ودون إشعار مسبق إذا تبين لنا أنك انتهكت شروط الاستخدام هذه.</p>
-
-        <h2>7. إخلاء المسؤولية</h2>
-        <p>يتم تقديم تطبيق "لور" كما هو دون أي ضمانات صريحة أو ضمنية. نحن لا نتحمل مسؤولية أي أضرار ناتجة عن استخدام التطبيق أو تعذّر استخدامه.</p>
-
-        <h2>8. اتصل بنا</h2>
-        <p>لأي استفسارات بخصوص شروط الاستخدام، يرجى التواصل معنا عبر البريد الإلكتروني: support@lore-app.com</p>
-
-        <div class="footer">
-            &copy; 2024 تطبيق لور (Lore). جميع الحقوق محفوظة.
+        <div class="intro-card">
+            أهلاً بك في منصة <strong>لور (LORE)</strong>. تنظم هذه الاتفاقية استخدامك للتطبيق والخدمات المرتبطة به. يعد استخدامك للتطبيق أو إنشاء حساب فيه موافقة صريحة وكاملة على كافة الشروط والبنود الواردة أدناه.
         </div>
+
+        <main>
+            <section class="content-card">
+                <h2>1. شروط الحساب والتسجيل</h2>
+                <ul>
+                    <li>يجب أن تكون المعلومات المسجلة صحيحة ومحدثة عند إنشاء الحساب.</li>
+                    <li>أنت المسؤول الوحيد عن الحفاظ على سرية بيانات تسجيل دخولك وكلمة المرور الخاصة بك.</li>
+                    <li>يُحظر إنشاء حسابات متعددة بقصد التلاعب بالتقييمات أو التحايل على أنظمة المنصة.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>2. حقوق الملكية الفكرية والنشر</h2>
+                <ul>
+                    <li><strong>حقوق الكاتب:</strong> يحتفظ الكاتب بكامل حقوق الملكية الفكرية للروايات والقصص والمقالات التي يؤلفها وينشرها على المنصة.</li>
+                    <li><strong>الترخيص:</strong> بنشر محتواك على LORE، فإنك تمنح المنصة ترخيصاً عالمياً غير حصري لعرض وتوزيع وتنسيق المحتوى داخل التطبيق وموقعه الإلكتروني.</li>
+                    <li><strong>حظر السرقة الأدبية:</strong> يُحظر تماماً نسخ أو نشر أعمال أدبية أو ترجمات تعود لأشخاص آخرين دون إذن خطي وموثق من صاحب العمل الأصلي.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>3. قواعد السلوك والمحتوى المحظور</h2>
+                <p>يلتزم جميع المستخدمين في أقسام النشر، التعليقات، المحادثات، واليوميات (الستوري) بعدم نشر ما يلي:</p>
+                <ul>
+                    <li>المحتوى الإباحي، أو الجنسي الصريح، أو المحتوى الخادش للحياء والآداب العامة.</li>
+                    <li>خطاب الكراهية، العنصرية، التمييز الطائفي أو الديني، أو التحريض على العنف والإيذاء.</li>
+                    <li>الإساءة الشخصية، التشهير، التحرش، أو التنمر على أي من الأعضاء أو الكتاب.</li>
+                    <li>البرمجيات الخبيثة، الرسائل الترويجية العشوائية (Spam)، أو روابط الاحتيال.</li>
+                </ul>
+                <p style="font-size: 13.5px; color: #FCA5A5;">تحتفظ إدارة المنصة بالحق الكامل في إزالة أي محتوى مخالف أو حظر الحسابات المتجاوزة فوراً دون سابق إنذار.</p>
+            </section>
+
+            <section class="content-card">
+                <h2>4. تفاعلات الذكاء الاصطناعي وشخصيات الروايات</h2>
+                <ul>
+                    <li>توفر المنصة ميزة محاكاة تفاعلية للشخصيات الروائية عبر تقنيات الذكاء الاصطناعي لتوفير تجربة ترفيهية خيالية.</li>
+                    <li>كافة إجابات وتفاعلات الشخصيات هي نتاج نماذج حاسوبية ذكية وسياق تخيلي ولا تمثل فتاوى أو استشارات طبية أو قانونية حقيقية.</li>
+                    <li>يُحظر محاولة توجيه الذكاء الاصطناعي لإنشاء نصوص تحريضية أو خادشة أو تنتهك معايير السلامة والأخلاق.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>5. نظام العملات الرقمية (لورين) والمكافآت</h2>
+                <ul>
+                    <li>العملات والنقاط داخل التطبيق (لورين) مخصصة لدعم الكتاب والأنشطة التفاعلية ولا تعتبر عملة قانونية قابلة للتداول الخارجي إلا من خلال برامج صناع المحتوى الرسمية المعتمدة من إدارة LORE.</li>
+                    <li>يُمنع استخدام أي طرق غير مشروعة أو استغلال ثغرات برمجية لزيادة رصيد النقاط أو التلاعب بالأنظمة.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>6. إنهاء الحساب وحذف البيانات</h2>
+                <ul>
+                    <li>يحق للمستخدم إيقاف استخدامه للتطبيق وحذف حسابه نهائياً في أي وقت عبر إعدادات التطبيق أو عبر الرابط المخصص: <a href="/delete-account" style="color: #93C5FD; font-weight: bold;">صفحة طلب حذف الحساب</a>.</li>
+                    <li>يؤدي حذف الحساب إلى محو كافة الملفات والروايات المنشورة والمسودات وسجل المحادثات ورصيد الحساب بشكل دائم لا يمكن استرجاعه.</li>
+                </ul>
+            </section>
+
+            <section class="content-card">
+                <h2>7. إخلاء المسؤولية وحدود الخدمة</h2>
+                <p>يتم تقديم تطبيق LORE "كما هو" وفق الإمكانيات المتاحة. نحن نبذل قصارى جهدنا لضمان استقرار الخدمة وأمان البيانات السحابية بالتعاون مع أفضل مزودي السحابة (AWS)، ولكننا لا نتحمل المسؤولية القانونية عن أي أضرار غير مباشرة قد تنتج عن انقطاع مؤقت في الخدمة أو إساءة استخدام من أطراف أخرى.</p>
+            </section>
+
+            <section class="content-card">
+                <h2>8. التواصل والدعم القانوني</h2>
+                <p>لأي استفسارات قانونية أو إبلاغ عن انتهاك لحقوق النشر أو السلوك، يرجى التواصل مع فريقنا:</p>
+                <p style="direction: ltr; text-align: right;"><a href="mailto:support@lore-app.com" style="color: #60A5FA; font-weight: 700; text-decoration: none;">support@lore-app.com</a></p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="nav-links">
+                <a href="/privacy">سياسة الخصوصية</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/terms">شروط الاستخدام والقوانين</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/delete-account" style="color: #F87171;">طلب حذف الحساب</a>
+                <span style="color: var(--text-muted)">•</span>
+                <a href="/">الصفحة الرئيسية</a>
+            </div>
+            <p style="margin-top: 16px;">© 2026 منصة لور (LORE). جميع الحقوق محفوظة.</p>
+        </footer>
     </div>
 </body>
 </html>

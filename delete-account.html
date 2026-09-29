@@ -3,108 +3,415 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>طلب حذف الحساب | لور LORE</title>
+  <title>طلب حذف الحساب والبيانات | لور LORE</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    .form-group {
-      margin-bottom: 18px;
+    :root {
+      --bg-color: #0A0D14;
+      --surface-card: rgba(17, 24, 39, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --primary: #2563EB;
+      --primary-glow: rgba(37, 99, 235, 0.35);
+      --text-main: #F9FAFB;
+      --text-muted: #9CA3AF;
+      --danger: #EF4444;
+      --danger-dark: #DC2626;
+      --danger-glow: rgba(239, 68, 68, 0.35);
+      --radius-lg: 20px;
+      --radius-md: 12px;
     }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      padding: 24px 16px;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      top: -120px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 500px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.22) 0%, rgba(10, 13, 20, 0) 70%);
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .app-logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #1D4ED8, #2563EB);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .header-btn {
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .showcase-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+      margin-bottom: 24px;
+    }
+
+    .title-section {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .title-section h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .title-section p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      color: #FECACA;
+      font-size: 13.5px;
+    }
+
+    .warning-box strong {
+      color: #F87171;
+    }
+
+    .data-list {
+      margin: 10px 0;
+      padding-right: 18px;
+      list-style: disc;
+    }
+
+    .data-list li {
+      margin-bottom: 6px;
+      color: #FCA5A5;
+      font-size: 13px;
+    }
+
+    .info-tab {
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: 13.5px;
+      color: #BFDBFE;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
     .form-group label {
       display: block;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-secondary);
+      margin-bottom: 8px;
+      color: #E5E7EB;
     }
+
     .form-control {
       width: 100%;
-      padding: 12px 14px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--dark-card-border);
+      padding: 13px 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
       color: #fff;
       font-family: inherit;
       font-size: 14px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     .form-control:focus {
-      border-color: var(--primary-blue);
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
     }
-    .warning-box {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: #fca5a5;
-      padding: 14px;
+
+    select.form-control {
+      cursor: pointer;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
       border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--danger);
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
       font-size: 13px;
-      margin-bottom: 20px;
+      color: #D1D5DB;
+      cursor: pointer;
+      user-select: none;
     }
+
     .btn-danger {
-      background: linear-gradient(135deg, #dc2626, #b91c1c);
-      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #DC2626, #B91C1C);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 18px var(--danger-glow);
+      transition: all 0.2s;
     }
+
     .btn-danger:hover {
-      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      box-shadow: 0 6px 24px rgba(239, 68, 68, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-danger:active {
+      transform: translateY(0);
+    }
+
+    #success-message {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .success-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #34D399;
+      margin-bottom: 10px;
+    }
+
+    .success-desc {
+      font-size: 14px;
+      color: #D1D5DB;
+      max-width: 480px;
+      margin: 0 auto 20px auto;
+      line-height: 1.7;
+    }
+
+    .site-footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #93C5FD;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="ambient-glow"></div>
 
-  <div class="site-container">
+  <div class="container">
     <header class="app-header">
       <a href="/" class="app-brand">
         <div class="app-logo">L</div>
         <div class="brand-text">
           <h1>لور • LORE</h1>
-          <p>إدارة الحساب والأمان</p>
+          <p>إدارة الحساب وحذف البيانات</p>
         </div>
       </a>
-      <a href="/" class="header-btn header-btn-primary">الرئيسية</a>
+      <a href="/" class="header-btn">الصفحة الرئيسية</a>
     </header>
 
     <main class="showcase-card">
-      <div class="card-body">
-        <div class="title-section" style="margin-bottom: 20px;">
-          <h2>طلب حذف الحساب والبيانات الشخصية</h2>
-          <p style="color: var(--text-secondary); font-size: 13.5px;">وفقاً لسياسات الخصوصية ومتطلبات Google Play و Apple App Store</p>
+      <div class="title-section">
+        <h2>طلب حذف الحساب والبيانات نهائياً</h2>
+        <p>وفقاً لسياسات الخصوصية ومتطلبات متجر Google Play ومتجر Apple</p>
+      </div>
+
+      <div class="info-tab">
+        💡 <strong>ملاحظة للمستخدمين داخل التطبيق:</strong> يمكنك حذف حسابك بشكل فوري ومباشر من داخل التطبيق بالانتقال إلى (<strong>الإعدادات > حذف الحساب</strong>). إذا كنت قد قمت بإلغاء تثبيت التطبيق، يمكنك استخدام هذا النموذج الإلكتروني أدناه.
+      </div>
+
+      <div class="warning-box">
+        ⚠️ <strong>تنبيه هام ومصيري:</strong> حذف الحساب إجراء نهائي وغير قابل للتراجع. عند إتمام عملية الحذف، سيتم محو البيانات التالية بشكل كامل ودائم:
+        <ul class="data-list">
+          <li>بيانات الدخول، البريد الإلكتروني، واسم المستخدم والملف التعريفي.</li>
+          <li>كافة الروايات والفصول المنشورة، المسودات، والمقالات.</li>
+          <li>سجل الرسائل في الدردشات، الملصقات، ومشاركات اليوميات (Stories).</li>
+          <li>رصيد العملات (لورين)، الشارات، والإنجازات، وسجل القراءة والمفضلة.</li>
+        </ul>
+      </div>
+
+      <form id="delete-form" onsubmit="handleDeleteSubmit(event)">
+        <div class="form-group">
+          <label for="user-email">البريد الإلكتروني المسجل في التطبيق *</label>
+          <input type="email" id="user-email" class="form-control" required placeholder="example@email.com" dir="ltr">
         </div>
 
-        <div class="warning-box">
-          ⚠️ <strong>تنبيه هام:</strong> حذف الحساب إجراء نهائي لا يمكن التراجع عنه. سيتم حذف ملفك الشخصي، رواياتك المنشورة، مسوداتك، ومشاركاتك ومحادثاتك في المجتمعات نهائياً وفق الشروط.
+        <div class="form-group">
+          <label for="username">اسم المستخدم المسجل في التطبيق (Username) *</label>
+          <input type="text" id="username" class="form-control" required placeholder="@username" dir="ltr">
         </div>
 
-        <form id="delete-form" onsubmit="handleDeleteSubmit(event)">
-          <div class="form-group">
-            <label for="user-email">البريد الإلكتروني المسجل في التطبيق</label>
-            <input type="email" id="user-email" class="form-control" required placeholder="name@example.com" dir="ltr">
-          </div>
-
-          <div class="form-group">
-            <label for="username">اسم المستخدم (Username)</label>
-            <input type="text" id="username" class="form-control" required placeholder="@username" dir="ltr">
-          </div>
-
-          <div class="form-group">
-            <label for="reason">سبب طلب الحذف (اختياري)</label>
-            <textarea id="reason" class="form-control" rows="3" placeholder="أخبرنا بالسبب لمساعدتنا في تحسين التجربة..."></textarea>
-          </div>
-
-          <button type="submit" class="btn-cta-primary btn-danger">
-            تأكيد وإرسال طلب الحذف
-          </button>
-        </form>
-
-        <div id="success-message" style="display: none; text-align: center; padding: 24px;">
-          <div style="font-size: 40px; margin-bottom: 12px;">✅</div>
-          <h3 style="font-size: 18px; margin-bottom: 8px;">تم استلام طلبك بنجاح</h3>
-          <p style="color: var(--text-secondary); font-size: 14px;">سنقوم بمراجعة الطلب وحذف كافة البيانات المرتبطة بالحساب خلال فترة أقصاها 14 يوماً عمل.</p>
+        <div class="form-group">
+          <label for="delete-reason">سبب طلب الحذف (اختياري)</label>
+          <select id="delete-reason" class="form-control">
+            <option value="">-- اختر سبباً لمساعدتنا في التطوير --</option>
+            <option value="not_using">لم أعد أستخدم التطبيق كثيراً</option>
+            <option value="privacy">مخاوف تتعلق بالخصوصية</option>
+            <option value="technical">واجهت مشاكل أو أخطاء تقنية</option>
+            <option value="new_account">أرغب في إنشاء حساب جديد من البداية</option>
+            <option value="other">سبب آخر</option>
+          </select>
         </div>
+
+        <div class="form-group">
+          <label for="feedback">ملاحظات إضافية (اختياري)</label>
+          <textarea id="feedback" class="form-control" rows="3" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="confirm-check" required>
+          <label for="confirm-check">
+            أقر بأنني قرأت وفهمت أن هذا الإجراء نهائي وسيترتب عليه حذف حسابي وجميع أعمالي ورصيدي وبياناتي نهائياً وبلا رجعة.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-danger">
+          تأكيد وإرسال طلب حذف الحساب نهائياً
+        </button>
+      </form>
+
+      <div id="success-message">
+        <div class="success-icon">✅</div>
+        <h3 class="success-title">تم استلام طلبك بنجاح</h3>
+        <p class="success-desc">
+          تم قيد طلب حذف حسابك وبياناتك المرتبطة به. سيتم مراجعة الطلب وتنفيذ الحذف التام والنهائي من قواعد بيانات AWS خلال فترة أقصاها <strong>7 أيام عمل</strong>.
+        </p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+          إذا كان لديك أي استفسار عاجل، يمكنك مراسلة الدعم الفني مباشرة عبر: <br>
+          <a href="mailto:support@lore-app.com" style="color: #60A5FA; font-weight: bold; text-decoration: none;">support@lore-app.com</a>
+        </p>
+        <a href="/" class="header-btn">العودة للرئيسية</a>
       </div>
     </main>
 
@@ -114,18 +421,24 @@
         <span>•</span>
         <a href="/terms">شروط الاستخدام</a>
         <span>•</span>
+        <a href="/delete-account" style="color: #F87171;">طلب حذف الحساب</a>
+        <span>•</span>
         <a href="/">الرئيسية</a>
       </div>
-      <p>© 2026 منصة لور (Lore). جميع الحقوق محفوظة.</p>
+      <p>© 2026 منصة لور (LORE). جميع الحقوق محفوظة.</p>
     </footer>
   </div>
 
-  <script src="/assets/js/app.js"></script>
   <script>
     function handleDeleteSubmit(e) {
       e.preventDefault();
+      var email = document.getElementById('user-email').value;
+      var username = document.getElementById('username').value;
+      if (!email || !username) return;
+
       document.getElementById('delete-form').style.display = 'none';
       document.getElementById('success-message').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
