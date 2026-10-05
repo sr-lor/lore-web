@@ -74840,7 +74840,7 @@ QB(){var s,r,q=null
 try{$.etf()}catch(s){}if(q!=null){r=B.b.I(q)
 r=r.gbf(r)}else r=!1
 if(r)return"https://"+A.w(B.b.I(q).Ud(0,A.aQ("^https?:\\/\\/",!0,!1,!1,!1),"").Ud(0,A.aQ("\\/$",!0,!1,!1,!1),""))
-return"https://web.srlor.com"},
+return"https://lore.srlor.com"},
 a9E(a){var s=B.b.I(A.bF(a,"-","")).toLowerCase()
 return s.length>=8?B.b.a4(s,0,8):s},
 edZ(a,b){var s=b!=null&&B.b.I(b).length!==0?B.b.I(b).toLowerCase():A.a9E(a)
@@ -74894,8 +74894,8 @@ l=A.aQ("\\s+",!0,!1,!1,!1)
 r=B.b.I(A.bF(a,l," "))
 q=J.aP(r)>165?J.bFe(r,0,162)+"...":r
 l=B.b.hA(c,A.aQ("^\\/+",!0,!1,!1,!1),"")
-p="https://web.srlor.com/"+l
-o=b!=null&&B.b.I(b).length!==0?B.b.I(b):"https://web.srlor.com/icons/Icon-512.png"
+p="https://lore.srlor.com/"+l
+o=b!=null&&B.b.I(b).length!==0?B.b.I(b):"https://lore.srlor.com/icons/Icon-512.png"
 l=document
 l.title=s
 A.ayn("description",q)
@@ -266772,7 +266772,7 @@ A.db_.prototype={
 $0(){},
 $S:0}
 A.db7.prototype={
-$0(){A.Fb("https://web.srlor.com/delete-account",B.fJ)},
+$0(){A.Fb("https://lore.srlor.com/delete-account",B.fJ)},
 $S:0}
 A.db8.prototype={
 $0(){return A.ab(this.a,!1).f7()},
@@ -269961,7 +269961,7 @@ A.ayj.prototype={
 Z(){return new A.aH8(A.c([],t.Oh),A.c([],t.QE),A.c([],t.fd),A.c([],t.cO),A.F(t.N,t.S))}}
 A.aH8.prototype={
 ab(){this.ai()
-A.a_E("\u0627\u0643\u062a\u0634\u0641 \u0639\u0648\u0627\u0644\u0645 \u0627\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u062d\u0635\u0631\u064a\u0629\u060c \u0627\u0642\u0631\u0623 \u0645\u0642\u0627\u0644\u0627\u062a \u0641\u0643\u0631\u064a\u0629 \u0645\u0644\u0647\u0645\u0629\u060c \u062a\u0641\u0627\u0639\u0644 \u0645\u0639 \u0623\u0628\u0637\u0627\u0644 \u0627\u0644\u0642\u0635\u0635 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a\u060c \u0648\u0627\u0646\u0634\u0631 \u0623\u0639\u0645\u0627\u0644\u0643 \u0639\u0628\u0631 \u0627\u0633\u062a\u0648\u062f\u064a\u0648 \u0644\u0648\u0631 \u0644\u0644\u0643\u064f\u062a\u0651\u0627\u0628.",null,"",A.C(["@context","https://schema.org","@type","WebSite","name","\u0644\u0648\u0631 LORE","url","https://web.srlor.com","description","\u0627\u0644\u0645\u0646\u0635\u0629 \u0627\u0644\u0623\u062f\u0628\u064a\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u0644\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0648\u0627\u0644\u0645\u0642\u0627\u0644\u0627\u062a \u0648\u0627\u0644\u0645\u062c\u062a\u0645\u0639\u0627\u062a \u0648\u0627\u0633\u062a\u0648\u062f\u064a\u0648 \u0627\u0644\u0643\u064f\u062a\u0651\u0627\u0628."],t.N,t.z),"\u0644\u0648\u0631 LORE - \u0627\u0644\u0645\u0646\u0635\u0629 \u0627\u0644\u0623\u062f\u0628\u064a\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u0644\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0648\u0627\u0644\u0645\u0642\u0627\u0644\u0627\u062a \u0648\u0627\u0644\u0645\u062c\u062a\u0645\u0639\u0627\u062a","website")
+A.a_E("\u0627\u0643\u062a\u0634\u0641 \u0639\u0648\u0627\u0644\u0645 \u0627\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u062d\u0635\u0631\u064a\u0629\u060c \u0627\u0642\u0631\u0623 \u0645\u0642\u0627\u0644\u0627\u062a \u0641\u0643\u0631\u064a\u0629 \u0645\u0644\u0647\u0645\u0629\u060c \u062a\u0641\u0627\u0639\u0644 \u0645\u0639 \u0623\u0628\u0637\u0627\u0644 \u0627\u0644\u0642\u0635\u0635 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a\u060c \u0648\u0627\u0646\u0634\u0631 \u0623\u0639\u0645\u0627\u0644\u0643 \u0639\u0628\u0631 \u0627\u0633\u062a\u0648\u062f\u064a\u0648 \u0644\u0648\u0631 \u0644\u0644\u0643\u064f\u062a\u0651\u0627\u0628.",null,"",A.C(["@context","https://schema.org","@type","WebSite","name","\u0644\u0648\u0631 LORE","url","https://lore.srlor.com","description","\u0627\u0644\u0645\u0646\u0635\u0629 \u0627\u0644\u0623\u062f\u0628\u064a\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u0644\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0648\u0627\u0644\u0645\u0642\u0627\u0644\u0627\u062a \u0648\u0627\u0644\u0645\u062c\u062a\u0645\u0639\u0627\u062a \u0648\u0627\u0633\u062a\u0648\u062f\u064a\u0648 \u0627\u0644\u0643\u064f\u062a\u0651\u0627\u0628."],t.N,t.z),"\u0644\u0648\u0631 LORE - \u0627\u0644\u0645\u0646\u0635\u0629 \u0627\u0644\u0623\u062f\u0628\u064a\u0629 \u0627\u0644\u0623\u0648\u0644\u0649 \u0644\u0644\u0631\u0648\u0627\u064a\u0627\u062a \u0648\u0627\u0644\u0645\u0642\u0627\u0644\u0627\u062a \u0648\u0627\u0644\u0645\u062c\u062a\u0645\u0639\u0627\u062a","website")
 this.XW()},
 XW(){var s=0,r=A.m(t.H),q=1,p=[],o=this,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6
 var $async$XW=A.i(function(a7,a8){if(a7===1){p.push(a8)
