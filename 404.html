@@ -4,8 +4,7 @@
   <base href="/">
 
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
   <meta name="description" content="LORE - عالَم الروايات والمقالات الإبداعية. اكتشف، شارك، وتواصل مع الكُتّاب والقراء.">
 
   <!-- Mobile & PWA meta tags -->
@@ -35,7 +34,7 @@
       margin: 0;
       padding: 0;
     }
-    body {
+    html, body {
       background-color: #0A0D14;
       color: #FFFFFF;
       font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -46,6 +45,10 @@
       width: 100vw;
       overflow: hidden;
       position: relative;
+      touch-action: pan-y;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overscroll-behavior: none;
     }
     /* Royal Blue Ambient glow */
     .ambient-glow {
@@ -139,7 +142,19 @@
         }
       });
     }
+    // Prevent pinch-to-zoom and multi-touch zoom gestures
+    document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+    document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
+    document.addEventListener('gestureend', function (e) { e.preventDefault(); });
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+      var now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
   </script>
-  <script src="flutter_bootstrap.js?v=5" async></script>
+  <script src="flutter_bootstrap.js?v=6" async></script>
 </body>
 </html>
