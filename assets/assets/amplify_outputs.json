@@ -2971,7 +2971,8 @@
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           }
         }

@@ -5,3 +5,5 @@ node_modules/
 .env
 *.env
 *gemini-key.json
+*fcm_service_account.json
+*fcm_bridge_config.json
