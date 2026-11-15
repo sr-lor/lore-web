@@ -550,10 +550,7 @@
               "properties": {
                 "rules": [
                   {
-                    "provider": "userPools",
-                    "ownerField": "owner",
-                    "allow": "owner",
-                    "identityClaim": "cognito:username",
+                    "allow": "private",
                     "operations": [
                       "create",
                       "update",
@@ -562,7 +559,7 @@
                     ]
                   },
                   {
-                    "allow": "private",
+                    "allow": "public",
                     "operations": [
                       "read"
                     ]
@@ -1404,6 +1401,12 @@
                       "delete",
                       "read"
                     ]
+                  },
+                  {
+                    "allow": "public",
+                    "operations": [
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -1475,10 +1478,7 @@
               "properties": {
                 "rules": [
                   {
-                    "provider": "userPools",
-                    "ownerField": "owner",
-                    "allow": "owner",
-                    "identityClaim": "cognito:username",
+                    "allow": "private",
                     "operations": [
                       "create",
                       "update",
@@ -1487,7 +1487,7 @@
                     ]
                   },
                   {
-                    "allow": "private",
+                    "allow": "public",
                     "operations": [
                       "read"
                     ]
