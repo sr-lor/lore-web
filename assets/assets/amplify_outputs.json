@@ -43,7 +43,8 @@
         "aws.cognito.signin.user.admin"
       ],
       "identity_providers": [
-        "GOOGLE"
+        "GOOGLE",
+        "APPLE"
       ]
     }
   },
