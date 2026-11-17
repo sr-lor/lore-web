@@ -27,10 +27,13 @@
     "oauth": {
       "domain": "lore-app-auth.auth.eu-west-1.amazoncognito.com",
       "redirect_sign_in_uri": [
-        "lore://callback/"
+        "lore://callback/",
+        "https://lore.srlor.com/",
+        "https://lore.srlor.com/preorder"
       ],
       "redirect_sign_out_uri": [
-        "lore://signout/"
+        "lore://signout/",
+        "https://lore.srlor.com/"
       ],
       "response_type": "code",
       "scopes": [
