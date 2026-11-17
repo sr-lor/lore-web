@@ -44,7 +44,7 @@
       ],
       "identity_providers": [
         "GOOGLE",
-        "APPLE"
+        "SIGN_IN_WITH_APPLE"
       ]
     }
   },
