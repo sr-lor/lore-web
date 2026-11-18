@@ -117,6 +117,13 @@
               "isRequired": true,
               "attributes": []
             },
+            "birthDate": {
+              "name": "birthDate",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "laurenBalance": {
               "name": "laurenBalance",
               "isArray": false,
@@ -128,6 +135,87 @@
               "name": "isProfileComplete",
               "isArray": false,
               "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "UserProfileStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "isVerified": {
+              "name": "isVerified",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "verifiedTitle": {
+              "name": "verifiedTitle",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "verificationTier": {
+              "name": "verificationTier",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "loreenBalance": {
+              "name": "loreenBalance",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "banStatus": {
+              "name": "banStatus",
+              "isArray": false,
+              "type": {
+                "enum": "UserProfileBanStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "banReason": {
+              "name": "banReason",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "banExpiresAt": {
+              "name": "banExpiresAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "activeWarningId": {
+              "name": "activeWarningId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningCount": {
+              "name": "warningCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportCount": {
+              "name": "reportCount",
+              "isArray": false,
+              "type": "Int",
               "isRequired": false,
               "attributes": []
             },
@@ -180,6 +268,28 @@
                   {
                     "allow": "private",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -254,6 +364,29 @@
               "isRequired": false,
               "attributes": []
             },
+            "moderationStatus": {
+              "name": "moderationStatus",
+              "isArray": false,
+              "type": {
+                "enum": "NovelModerationStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningCount": {
+              "name": "warningCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportCount": {
+              "name": "reportCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
             "isCompleted": {
               "name": "isCompleted",
               "isArray": false,
@@ -277,6 +410,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "ageRating": {
+              "name": "ageRating",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
             "subGenres": {
               "name": "subGenres",
               "isArray": true,
@@ -296,6 +436,48 @@
               "name": "chaptersCount",
               "isArray": false,
               "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "viewsCount": {
+              "name": "viewsCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "likesCount": {
+              "name": "likesCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "followersCount": {
+              "name": "followersCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "ratingAverage": {
+              "name": "ratingAverage",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "ratingCount": {
+              "name": "ratingCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "ratingSum": {
+              "name": "ratingSum",
+              "isArray": false,
+              "type": "Float",
               "isRequired": false,
               "attributes": []
             },
@@ -346,6 +528,21 @@
                     "allow": "public",
                     "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -441,6 +638,20 @@
               "isRequired": false,
               "attributes": []
             },
+            "ratingCount": {
+              "name": "ratingCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "ratingSum": {
+              "name": "ratingSum",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -477,6 +688,28 @@
                 "rules": [
                   {
                     "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -564,7 +797,163 @@
                   },
                   {
                     "allow": "public",
+                    "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "UserBlock": {
+          "name": "UserBlock",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "blockerId": {
+              "name": "blockerId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "blockedId": {
+              "name": "blockedId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "blockedName": {
+              "name": "blockedName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "blockedUsername": {
+              "name": "blockedUsername",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "blockedAvatarUrl": {
+              "name": "blockedAvatarUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reason": {
+              "name": "reason",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "UserBlocks",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "userBlocksByBlockerId",
+                "queryField": "listUserBlocksByBlocker",
+                "fields": [
+                  "blockerId"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "userBlocksByBlockedId",
+                "queryField": "listUserBlocksByBlocked",
+                "fields": [
+                  "blockedId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -613,6 +1002,13 @@
             },
             "imageUrl": {
               "name": "imageUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "bannerUrl": {
+              "name": "bannerUrl",
               "isArray": false,
               "type": "String",
               "isRequired": false,
@@ -667,7 +1063,10 @@
               "properties": {
                 "rules": [
                   {
-                    "allow": "private",
+                    "provider": "userPools",
+                    "ownerField": "createdBy",
+                    "allow": "owner",
+                    "identityClaim": "cognito:username",
                     "operations": [
                       "create",
                       "update",
@@ -676,9 +1075,32 @@
                     ]
                   },
                   {
+                    "allow": "private",
+                    "operations": [
+                      "read",
+                      "create",
+                      "update"
+                    ]
+                  },
+                  {
                     "allow": "public",
                     "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -762,11 +1184,64 @@
               }
             },
             {
+              "type": "key",
+              "properties": {
+                "name": "roomParticipantsByRoomId",
+                "queryField": "listParticipantsByRoom",
+                "fields": [
+                  "roomId"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "roomParticipantsByUserId",
+                "queryField": "listParticipantsByUser",
+                "fields": [
+                  "userId"
+                ]
+              }
+            },
+            {
               "type": "auth",
               "properties": {
                 "rules": [
                   {
+                    "provider": "userPools",
+                    "ownerField": "userId",
+                    "allow": "owner",
+                    "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
                     "allow": "private",
+                    "operations": [
+                      "read",
+                      "create",
+                      "update"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -849,11 +1324,382 @@
               }
             },
             {
+              "type": "key",
+              "properties": {
+                "name": "roomJoinRequestsByRoomId",
+                "queryField": "listJoinRequestsByRoom",
+                "fields": [
+                  "roomId"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "roomJoinRequestsByUserId",
+                "queryField": "listJoinRequestsByUser",
+                "fields": [
+                  "userId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "userId",
+                    "allow": "owner",
+                    "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "read",
+                      "create",
+                      "update"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "CommunityMonthlySnapshot": {
+          "name": "CommunityMonthlySnapshot",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "roomId": {
+              "name": "roomId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "monthKey": {
+              "name": "monthKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "monthLabel": {
+              "name": "monthLabel",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalMessages": {
+              "name": "totalMessages",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalWords": {
+              "name": "totalWords",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalCharacters": {
+              "name": "totalCharacters",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalEmojis": {
+              "name": "totalEmojis",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalReplies": {
+              "name": "totalReplies",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "totalMedia": {
+              "name": "totalMedia",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "activeMembersCount": {
+              "name": "activeMembersCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "peakHourFormatted": {
+              "name": "peakHourFormatted",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "peakWeekdayName": {
+              "name": "peakWeekdayName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "topMembers": {
+              "name": "topMembers",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "savedAt": {
+              "name": "savedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "CommunityMonthlySnapshots",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "communityMonthlySnapshotsByRoomId",
+                "queryField": "listSnapshotsByRoom",
+                "fields": [
+                  "roomId"
+                ]
+              }
+            },
+            {
               "type": "auth",
               "properties": {
                 "rules": [
                   {
                     "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "GuildCustomEmojiItem": {
+          "name": "GuildCustomEmojiItem",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "roomId": {
+              "name": "roomId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "imageUrl": {
+              "name": "imageUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdBy": {
+              "name": "createdBy",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "GuildCustomEmojiItems",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "guildCustomEmojiItemsByRoomId",
+                "queryField": "listGuildEmojisByRoom",
+                "fields": [
+                  "roomId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -971,11 +1817,37 @@
               }
             },
             {
+              "type": "key",
+              "properties": {
+                "name": "chatMessagesByRoomIdAndCreatedAt",
+                "queryField": "listChatMessagesByRoom",
+                "fields": [
+                  "roomId",
+                  "createdAt"
+                ]
+              }
+            },
+            {
               "type": "auth",
               "properties": {
                 "rules": [
                   {
                     "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -1076,6 +1948,21 @@
                     "operations": [
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -1138,6 +2025,29 @@
               "type": {
                 "enum": "ArticleStatus"
               },
+              "isRequired": false,
+              "attributes": []
+            },
+            "moderationStatus": {
+              "name": "moderationStatus",
+              "isArray": false,
+              "type": {
+                "enum": "ArticleModerationStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningCount": {
+              "name": "warningCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportCount": {
+              "name": "reportCount",
+              "isArray": false,
+              "type": "Int",
               "isRequired": false,
               "attributes": []
             },
@@ -1219,6 +2129,21 @@
                     "operations": [
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -1290,10 +2215,7 @@
               "properties": {
                 "rules": [
                   {
-                    "provider": "userPools",
-                    "ownerField": "owner",
-                    "allow": "owner",
-                    "identityClaim": "cognito:username",
+                    "allow": "private",
                     "operations": [
                       "create",
                       "update",
@@ -1302,8 +2224,24 @@
                     ]
                   },
                   {
-                    "allow": "private",
+                    "allow": "public",
+                    "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -1408,7 +2346,23 @@
                   },
                   {
                     "allow": "public",
+                    "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -1492,7 +2446,23 @@
                   },
                   {
                     "allow": "public",
+                    "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -1598,6 +2568,21 @@
                     "operations": [
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -1675,10 +2660,34 @@
               "properties": {
                 "rules": [
                   {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
                     "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -1763,10 +2772,34 @@
               "properties": {
                 "rules": [
                   {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
                     "provider": "userPools",
                     "ownerField": "owner",
                     "allow": "owner",
                     "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -1847,6 +2880,21 @@
                     "ownerField": "owner",
                     "allow": "owner",
                     "identityClaim": "cognito:username",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -1941,6 +2989,21 @@
                       "delete",
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -2029,6 +3092,21 @@
                       "delete",
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -2054,7 +3132,7 @@
               "name": "novelId",
               "isArray": false,
               "type": "String",
-              "isRequired": true,
+              "isRequired": false,
               "attributes": []
             },
             "reporterId": {
@@ -2064,11 +3142,81 @@
               "isRequired": true,
               "attributes": []
             },
+            "reporterName": {
+              "name": "reporterName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reporterNotes": {
+              "name": "reporterNotes",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "targetId": {
+              "name": "targetId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "targetType": {
+              "name": "targetType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "violationType": {
+              "name": "violationType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportedUserId": {
+              "name": "reportedUserId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportedUserName": {
+              "name": "reportedUserName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportedTitle": {
+              "name": "reportedTitle",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportedContentSnippet": {
+              "name": "reportedContentSnippet",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "previousViolationsCount": {
+              "name": "previousViolationsCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
             "reason": {
               "name": "reason",
               "isArray": false,
               "type": "String",
-              "isRequired": true,
+              "isRequired": false,
               "attributes": []
             },
             "description": {
@@ -2087,6 +3235,27 @@
               "isRequired": false,
               "attributes": []
             },
+            "auditNote": {
+              "name": "auditNote",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "resolvedBy": {
+              "name": "resolvedBy",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "resolvedAt": {
+              "name": "resolvedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -2099,8 +3268,7 @@
               "isArray": false,
               "type": "AWSDateTime",
               "isRequired": false,
-              "attributes": [],
-              "isReadOnly": true
+              "attributes": []
             }
           },
           "syncable": true,
@@ -2137,6 +3305,24 @@
                   {
                     "allow": "private",
                     "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -2210,10 +3396,7 @@
               "properties": {
                 "rules": [
                   {
-                    "provider": "userPools",
-                    "ownerField": "owner",
-                    "allow": "owner",
-                    "identityClaim": "cognito:username",
+                    "allow": "private",
                     "operations": [
                       "create",
                       "update",
@@ -2222,8 +3405,124 @@
                     ]
                   },
                   {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "NovelFollow": {
+          "name": "NovelFollow",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "novelId": {
+              "name": "novelId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "NovelFollows",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
                     "allow": "private",
                     "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -2282,6 +3581,13 @@
               "isRequired": false,
               "attributes": []
             },
+            "isAutoFromChapters": {
+              "name": "isAutoFromChapters",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -2318,10 +3624,7 @@
               "properties": {
                 "rules": [
                   {
-                    "provider": "userPools",
-                    "ownerField": "owner",
-                    "allow": "owner",
-                    "identityClaim": "cognito:username",
+                    "allow": "private",
                     "operations": [
                       "create",
                       "update",
@@ -2330,8 +3633,138 @@
                     ]
                   },
                   {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "ChapterRating": {
+          "name": "ChapterRating",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "chapterId": {
+              "name": "chapterId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "novelId": {
+              "name": "novelId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "rating": {
+              "name": "rating",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "ChapterRatings",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
                     "allow": "private",
                     "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -2413,6 +3846,21 @@
                 "rules": [
                   {
                     "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
                     "operations": [
                       "create",
                       "update",
@@ -2595,6 +4043,29 @@
               "isRequired": false,
               "attributes": []
             },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "CharacterStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningCount": {
+              "name": "warningCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportCount": {
+              "name": "reportCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -2642,6 +4113,121 @@
                     "allow": "public",
                     "provider": "identityPool",
                     "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "CharacterLike": {
+          "name": "CharacterLike",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "characterId": {
+              "name": "characterId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "CharacterLikes",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
                       "read"
                     ]
                   }
@@ -2759,6 +4345,29 @@
               "attributes": [],
               "isArrayNullable": true
             },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "StoryStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningCount": {
+              "name": "warningCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportCount": {
+              "name": "reportCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
             "createdAt": {
               "name": "createdAt",
               "isArray": false,
@@ -2808,6 +4417,1681 @@
                     "operations": [
                       "read"
                     ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "AppNotification": {
+          "name": "AppNotification",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "recipientId": {
+              "name": "recipientId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "senderId": {
+              "name": "senderId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "senderName": {
+              "name": "senderName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "senderAvatar": {
+              "name": "senderAvatar",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "body": {
+              "name": "body",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "type": {
+              "name": "type",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "category": {
+              "name": "category",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "canAppeal": {
+              "name": "canAppeal",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningId": {
+              "name": "warningId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "targetId": {
+              "name": "targetId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "actionRoute": {
+              "name": "actionRoute",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "isRead": {
+              "name": "isRead",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "metadata": {
+              "name": "metadata",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "AppNotifications",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "UserDeviceToken": {
+          "name": "UserDeviceToken",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "deviceToken": {
+              "name": "deviceToken",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "platform": {
+              "name": "platform",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "UserDeviceTokens",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "userDeviceTokensByUserId",
+                "queryField": "listDeviceTokensByUserId",
+                "fields": [
+                  "userId"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "AppSetting": {
+          "name": "AppSetting",
+          "fields": {
+            "key": {
+              "name": "key",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "value": {
+              "name": "value",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "AppSettings",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "key"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "allow": "public",
+                    "provider": "identityPool",
+                    "operations": [
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": true,
+            "primaryKeyFieldName": "key",
+            "sortKeyFieldNames": []
+          }
+        },
+        "LorinWallet": {
+          "name": "LorinWallet",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "lorinBalance": {
+              "name": "lorinBalance",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "seasonPoints": {
+              "name": "seasonPoints",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "isVip": {
+              "name": "isVip",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "vipTier": {
+              "name": "vipTier",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "vipExpiresAt": {
+              "name": "vipExpiresAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "isSeasonPrime": {
+              "name": "isSeasonPrime",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "primeExpiresAt": {
+              "name": "primeExpiresAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "hasClaimedFirstPurchase": {
+              "name": "hasClaimedFirstPurchase",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "birthDate": {
+              "name": "birthDate",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "equippedCardId": {
+              "name": "equippedCardId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "cashbackVaultBalance": {
+              "name": "cashbackVaultBalance",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "cardUsageMonth": {
+              "name": "cardUsageMonth",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "cardUsageCounts": {
+              "name": "cardUsageCounts",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "version": {
+              "name": "version",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "hmacSignature": {
+              "name": "hmacSignature",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "LorinWallets",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "CoinTransaction": {
+          "name": "CoinTransaction",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "type": {
+              "name": "type",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "category": {
+              "name": "category",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "amount": {
+              "name": "amount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "balanceAfter": {
+              "name": "balanceAfter",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "seasonPointsDelta": {
+              "name": "seasonPointsDelta",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "seasonPointsAfter": {
+              "name": "seasonPointsAfter",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "metadata": {
+              "name": "metadata",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": true,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "CoinTransactions",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "key",
+              "properties": {
+                "name": "coinTransactionsByIdempotencyKey",
+                "queryField": "coinTransactionsByIdempotencyKey",
+                "fields": [
+                  "idempotencyKey"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "ProcessedReceipt": {
+          "name": "ProcessedReceipt",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "store": {
+              "name": "store",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "productId": {
+              "name": "productId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "purchaseToken": {
+              "name": "purchaseToken",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "verifiedAt": {
+              "name": "verifiedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": true,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "ProcessedReceipts",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "RewardClaim": {
+          "name": "RewardClaim",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "rewardType": {
+              "name": "rewardType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "rewardIdentifier": {
+              "name": "rewardIdentifier",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "claimedAt": {
+              "name": "claimedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": true,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "RewardClaims",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "provider": "userPools",
+                    "ownerField": "owner",
+                    "allow": "owner",
+                    "operations": [
+                      "read"
+                    ],
+                    "identityClaim": "cognito:username"
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "AdminUser": {
+          "name": "AdminUser",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "username": {
+              "name": "username",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "role": {
+              "name": "role",
+              "isArray": false,
+              "type": {
+                "enum": "AdminUserRole"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "AdminUserStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "avatarUrl": {
+              "name": "avatarUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "AdminUsers",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "ModerationItem": {
+          "name": "ModerationItem",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "authorId": {
+              "name": "authorId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "authorName": {
+              "name": "authorName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "authorAvatar": {
+              "name": "authorAvatar",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "contentType": {
+              "name": "contentType",
+              "isArray": false,
+              "type": {
+                "enum": "ModerationItemContentType"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "ModerationItemStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "viewsCount": {
+              "name": "viewsCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reportsCount": {
+              "name": "reportsCount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "snippet": {
+              "name": "snippet",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "ModerationItems",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "ContentWarning": {
+          "name": "ContentWarning",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "targetId": {
+              "name": "targetId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "targetType": {
+              "name": "targetType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "severityTier": {
+              "name": "severityTier",
+              "isArray": false,
+              "type": {
+                "enum": "ContentWarningSeverityTier"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "durationDays": {
+              "name": "durationDays",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reason": {
+              "name": "reason",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "issuedBy": {
+              "name": "issuedBy",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "expiresAt": {
+              "name": "expiresAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "ContentWarnings",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "Appeal": {
+          "name": "Appeal",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "warningId": {
+              "name": "warningId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "userName": {
+              "name": "userName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "userEmail": {
+              "name": "userEmail",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "userJustification": {
+              "name": "userJustification",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "originalWarningReason": {
+              "name": "originalWarningReason",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "penaltyTier": {
+              "name": "penaltyTier",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": {
+                "enum": "AppealStatus"
+              },
+              "isRequired": false,
+              "attributes": []
+            },
+            "reviewerFeedback": {
+              "name": "reviewerFeedback",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reviewedBy": {
+              "name": "reviewedBy",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "reviewedAt": {
+              "name": "reviewedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "submittedAt": {
+              "name": "submittedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "Appeals",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
+        },
+        "Notification": {
+          "name": "Notification",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "recipientUserId": {
+              "name": "recipientUserId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "category": {
+              "name": "category",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "type": {
+              "name": "type",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "body": {
+              "name": "body",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "canAppeal": {
+              "name": "canAppeal",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "warningId": {
+              "name": "warningId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "actionRoute": {
+              "name": "actionRoute",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "isRead": {
+              "name": "isRead",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": []
+            }
+          },
+          "syncable": true,
+          "pluralName": "Notifications",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  },
+                  {
+                    "groupClaim": "cognito:groups",
+                    "provider": "userPools",
+                    "allow": "groups",
+                    "groups": [
+                      "super_admin",
+                      "moderator"
+                    ],
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
                   }
                 ]
               }
@@ -2821,13 +6105,43 @@
         }
       },
       "enums": {
+        "UserProfileStatus": {
+          "name": "UserProfileStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "UserProfileBanStatus": {
+          "name": "UserProfileBanStatus",
+          "values": [
+            "none",
+            "temp_banned",
+            "perm_banned"
+          ]
+        },
         "NovelStatus": {
           "name": "NovelStatus",
           "values": [
             "draft",
             "ongoing",
             "completed",
-            "hiatus"
+            "hiatus",
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "NovelModerationStatus": {
+          "name": "NovelModerationStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
           ]
         },
         "NovelMaturityRating": {
@@ -2876,7 +6190,20 @@
           "name": "ArticleStatus",
           "values": [
             "draft",
-            "published"
+            "published",
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "ArticleModerationStatus": {
+          "name": "ArticleModerationStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
           ]
         },
         "LaurenTransactionType": {
@@ -2897,9 +6224,569 @@
             "resolved",
             "dismissed"
           ]
+        },
+        "CharacterStatus": {
+          "name": "CharacterStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "StoryStatus": {
+          "name": "StoryStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "AdminUserRole": {
+          "name": "AdminUserRole",
+          "values": [
+            "super_admin",
+            "moderator"
+          ]
+        },
+        "AdminUserStatus": {
+          "name": "AdminUserStatus",
+          "values": [
+            "active",
+            "suspended"
+          ]
+        },
+        "ModerationItemContentType": {
+          "name": "ModerationItemContentType",
+          "values": [
+            "novel",
+            "article",
+            "community",
+            "character",
+            "storyMessage"
+          ]
+        },
+        "ModerationItemStatus": {
+          "name": "ModerationItemStatus",
+          "values": [
+            "active",
+            "warned",
+            "hidden",
+            "deleted"
+          ]
+        },
+        "ContentWarningSeverityTier": {
+          "name": "ContentWarningSeverityTier",
+          "values": [
+            "firstWarning",
+            "finalWarning",
+            "temporarySuspension",
+            "permanentBan"
+          ]
+        },
+        "AppealStatus": {
+          "name": "AppealStatus",
+          "values": [
+            "pending",
+            "accepted",
+            "rejected"
+          ]
         }
       },
-      "nonModels": {}
+      "nonModels": {
+        "WalletMutationResult": {
+          "name": "WalletMutationResult",
+          "fields": {
+            "success": {
+              "name": "success",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "message": {
+              "name": "message",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "errorCode": {
+              "name": "errorCode",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true,
+              "attributes": []
+            },
+            "wallet": {
+              "name": "wallet",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            },
+            "transaction": {
+              "name": "transaction",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "CustomerIoProxyResult": {
+          "name": "CustomerIoProxyResult",
+          "fields": {
+            "success": {
+              "name": "success",
+              "isArray": false,
+              "type": "Boolean",
+              "isRequired": true,
+              "attributes": []
+            },
+            "statusCode": {
+              "name": "statusCode",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true,
+              "attributes": []
+            },
+            "message": {
+              "name": "message",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        },
+        "SyncStoreRevenueReturnType": {
+          "name": "SyncStoreRevenueReturnType",
+          "fields": {
+            "status": {
+              "name": "status",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "syncedAt": {
+              "name": "syncedAt",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "period": {
+              "name": "period",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "dailyGrossRevenue": {
+              "name": "dailyGrossRevenue",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "monthlyGrossRevenue": {
+              "name": "monthlyGrossRevenue",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "yearlyGrossRevenue": {
+              "name": "yearlyGrossRevenue",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "iosSharePercentage": {
+              "name": "iosSharePercentage",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "androidSharePercentage": {
+              "name": "androidSharePercentage",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "activeSubscribers": {
+              "name": "activeSubscribers",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "churnRate": {
+              "name": "churnRate",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": false,
+              "attributes": []
+            },
+            "message": {
+              "name": "message",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            }
+          }
+        }
+      },
+      "queries": {
+        "syncWallet": {
+          "name": "syncWallet",
+          "isArray": false,
+          "type": {
+            "model": "LorinWallet"
+          },
+          "isRequired": false
+        },
+        "syncStoreRevenue": {
+          "name": "syncStoreRevenue",
+          "isArray": false,
+          "type": {
+            "nonModel": "SyncStoreRevenueReturnType"
+          },
+          "isRequired": false,
+          "arguments": {
+            "period": {
+              "name": "period",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      },
+      "mutations": {
+        "syncCustomerIoPreorder": {
+          "name": "syncCustomerIoPreorder",
+          "isArray": false,
+          "type": {
+            "nonModel": "CustomerIoProxyResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "userId": {
+              "name": "userId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "email": {
+              "name": "email",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "username": {
+              "name": "username",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "name": {
+              "name": "name",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "avatarUrl": {
+              "name": "avatarUrl",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "laurenBalance": {
+              "name": "laurenBalance",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            },
+            "bonusAmount": {
+              "name": "bonusAmount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            }
+          }
+        },
+        "verifyPurchase": {
+          "name": "verifyPurchase",
+          "isArray": false,
+          "type": {
+            "nonModel": "WalletMutationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "store": {
+              "name": "store",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "productId": {
+              "name": "productId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "receiptToken": {
+              "name": "receiptToken",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "transactionId": {
+              "name": "transactionId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        },
+        "claimReward": {
+          "name": "claimReward",
+          "isArray": false,
+          "type": {
+            "nonModel": "WalletMutationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "rewardType": {
+              "name": "rewardType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "rewardIdentifier": {
+              "name": "rewardIdentifier",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "deviceFingerprint": {
+              "name": "deviceFingerprint",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        },
+        "spendLorin": {
+          "name": "spendLorin",
+          "isArray": false,
+          "type": {
+            "nonModel": "WalletMutationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "amount": {
+              "name": "amount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true
+            },
+            "category": {
+              "name": "category",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "description": {
+              "name": "description",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "idempotencyKey": {
+              "name": "idempotencyKey",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "metadata": {
+              "name": "metadata",
+              "isArray": false,
+              "type": "AWSJSON",
+              "isRequired": false
+            }
+          }
+        },
+        "incrementNovelCounter": {
+          "name": "incrementNovelCounter",
+          "isArray": false,
+          "type": {
+            "model": "Novel"
+          },
+          "isRequired": false,
+          "arguments": {
+            "novelId": {
+              "name": "novelId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true
+            },
+            "counterType": {
+              "name": "counterType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "amount": {
+              "name": "amount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            }
+          }
+        },
+        "incrementCharacterCounter": {
+          "name": "incrementCharacterCounter",
+          "isArray": false,
+          "type": {
+            "model": "Character"
+          },
+          "isRequired": false,
+          "arguments": {
+            "characterId": {
+              "name": "characterId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true
+            },
+            "counterType": {
+              "name": "counterType",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "amount": {
+              "name": "amount",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            }
+          }
+        },
+        "updateNovelRatingAtomic": {
+          "name": "updateNovelRatingAtomic",
+          "isArray": false,
+          "type": {
+            "model": "Novel"
+          },
+          "isRequired": false,
+          "arguments": {
+            "novelId": {
+              "name": "novelId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true
+            },
+            "ratingCountDelta": {
+              "name": "ratingCountDelta",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true
+            },
+            "ratingSumDelta": {
+              "name": "ratingSumDelta",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true
+            },
+            "newAverage": {
+              "name": "newAverage",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true
+            }
+          }
+        },
+        "updateChapterRatingAtomic": {
+          "name": "updateChapterRatingAtomic",
+          "isArray": false,
+          "type": {
+            "model": "Chapter"
+          },
+          "isRequired": false,
+          "arguments": {
+            "chapterId": {
+              "name": "chapterId",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true
+            },
+            "ratingCountDelta": {
+              "name": "ratingCountDelta",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": true
+            },
+            "ratingSumDelta": {
+              "name": "ratingSumDelta",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true
+            },
+            "newAverage": {
+              "name": "newAverage",
+              "isArray": false,
+              "type": "Float",
+              "isRequired": true
+            }
+          }
+        }
+      },
+      "subscriptions": {
+        "onWalletUpdated": {
+          "name": "onWalletUpdated",
+          "isArray": false,
+          "type": {
+            "nonModel": "WalletMutationResult"
+          },
+          "isRequired": false,
+          "arguments": {
+            "owner": {
+              "name": "owner",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            }
+          }
+        }
+      }
     }
   },
   "storage": {
@@ -2912,65 +6799,151 @@
         "aws_region": "eu-west-1",
         "paths": {
           "covers/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "avatars/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "banners/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "articles/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "studio/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "novels/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "characters/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
             ]
           },
           "chat_media/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
             "authenticated": [
               "get",
               "list",
-              "write"
+              "write",
+              "delete"
+            ]
+          },
+          "chat/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
+            "authenticated": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ]
+          },
+          "communities/*": {
+            "guest": [
+              "get",
+              "list",
+              "write",
+              "delete"
+            ],
+            "authenticated": [
+              "get",
+              "list",
+              "write",
+              "delete"
             ]
           },
           "public/*": {
             "guest": [
               "get",
-              "list"
+              "list",
+              "write",
+              "delete"
             ],
             "authenticated": [
               "get",
